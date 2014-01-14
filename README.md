@@ -1,9 +1,6 @@
 # Beer-Tracks
-===========
 
-A beer tracking app for the Nashville Software School
-
- ## Elevator Pitch
+## Elevator Pitch
 
 Have you ever wondered how much beer you drink or how much that beer is costing you? This will give you the cold, delicious truth.
 
