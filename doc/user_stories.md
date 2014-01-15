@@ -15,7 +15,7 @@ In order to stay within the bounds of a set budget,
 I want to track the amount of money I spend on beer.
 
 As a drinker who wants the most amount of alcohol for the buck
-In order to see how much actual alchohol I condumed for my money,
+In order to see how much actual alchohol I consumed for my money,
 I want to see how much i am spending on the percentage of alcohol in the beer.
 
 ##Acceptance Criteria
