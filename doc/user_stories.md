@@ -15,8 +15,6 @@ User Stories for Beer Tracks:
  
   Acceptance Criteria:
   *Prints out the total amount of beer consumed in ounces.
-
-
 </pre>
 
 <pre>
@@ -44,7 +42,6 @@ User Stories for Beer Tracks:
  
   Acceptance Criteria:
   *I can create, read, update and delete data.
-
 </pre>
 
 
