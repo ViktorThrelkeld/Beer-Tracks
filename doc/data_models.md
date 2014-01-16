@@ -2,9 +2,9 @@ Data Models
 
 <pre>
  Beer
-  Name
-  Cost
-  Oz
+  Name: varchar(30)
+  Cost: int
+  Oz: int
   Style
 </pre>
 
