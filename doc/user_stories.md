@@ -1,6 +1,6 @@
 #User Stories
 
-##CRUD Features
+##Create, Update and Delete Data
 
 ####Create a Journal Entry
 <pre>
@@ -15,17 +15,30 @@
   *I cannot make an entry without all fields passed.
 </pre>
 ***
-####Update and Delete Data
+
+####Update Data
 <pre>
     As a person who may have entered in the wrong data,
     In order to keep accurate records,
-    I want to be able to update and delete data.
+    I want to be able to update data.
    
     Acceptance Criteria:
     *I can update and delete data.
 </pre>
 ***
-##Query Features
+
+####Delete Data
+<pre>
+    As a person who may have entered in too much data,
+    In order to keep accurate records,
+    I want to be able to delete data.
+   
+    Acceptance Criteria:
+    *I can delete data.
+</pre>
+***
+
+##Query Data
 
 ####List Kinds of Beer Consumed
 <pre>
