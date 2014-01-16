@@ -1,25 +1,33 @@
-User Stories for Beer Tracks:
+#User Stories
+
+##CRUD Features
+
+####Create a Journal Entry
 <pre>
   As a person who drinks,
   In order to add beer consumed,
   I want to be able to create an entry.
-  
+    
   *Usage: ruby beer.rb add "kind" "style" "cost" "oz"
- 
+   
   Acceptance Criteria:
   *I can create data.
   *I cannot make an entry without all fields passed.
 </pre>
 ***
+####Update and Delete Data
 <pre>
-  As a person who may have entered in the wrong data,
-  In order to keep accurate records,
-  I want to be able to update and delete data.
- 
-  Acceptance Criteria:
-  *I can update and delete data.
+    As a person who may have entered in the wrong data,
+    In order to keep accurate records,
+    I want to be able to update and delete data.
+   
+    Acceptance Criteria:
+    *I can update and delete data.
 </pre>
 ***
+##Query Features
+
+####List Kinds of Beer Consumed
 <pre>
   As a beer connoisseur,
   In order to remember what different beers I have enjoyed,
@@ -31,6 +39,8 @@ User Stories for Beer Tracks:
   *Prints out the different kinds of beer consumed.
 </pre>
 ***
+
+####List Oz. of Beer Consumed
 <pre>
   As a healthy person,
   In order to keep a leash on my compulsive tendencies,
@@ -43,6 +53,7 @@ User Stories for Beer Tracks:
 </pre>
 ***
 
+####List Calories Consumed
 <pre>
   As a healthy person,
   In order to keep a leash on my weight,
@@ -54,6 +65,8 @@ User Stories for Beer Tracks:
   *Prints out approximate calories consumed.
 </pre>
 ***
+
+####List Money Spent
 <pre>
   As a frugal husband,
   In order to stay within the bounds of a set budget,
@@ -65,6 +78,8 @@ User Stories for Beer Tracks:
   *Prints out the total amount of money spent.
 </pre>
 ***
+
+####List Money Spent Per ABV
 <pre>
   As a drinker who wants the most amount of alcohol for the buck,
   In order to see how much actual alcohol I consume for my money,
