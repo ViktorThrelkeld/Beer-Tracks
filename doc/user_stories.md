@@ -22,7 +22,7 @@
     In order to keep accurate records,
     I want to be able to update data.
     
-     *Usage: ruby beer.rb update"kind" "style" "cost" "oz"
+     *Usage: ruby beer.rb update "kind" "style" "cost" "oz"
    
     Acceptance Criteria:
     *I can update data.
