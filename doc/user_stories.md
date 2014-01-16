@@ -1,39 +1,14 @@
 User Stories for Beer Tracks:
 <pre>
-  As a beer connoisseur,
-  In order to remember what different beers I have enjoyed,
-  I want to track the different kinds of beer I drink.
+  As a person who drinks,
+  In order to add beer consumed,
+  I want to be able to create an entry.
+  
+  *Usage: ruby beer.rb add "kind" "style" "cost" "oz"
  
   Acceptance Criteria:
-  *Prints out the different kinds of beer consumed.
-</pre>
-***
-<pre>
-  As a healthy person,
-  In order to keep a leash on my compulsive tendencies,
-  I want to track the amount of beer I drink.
- 
-  Acceptance Criteria:
-  *Prints out the total amount of beer consumed in ounces.
-  *Prints out approximate calories consumed.
-</pre>
-***
-<pre>
-  As a frugal husband,
-  In order to stay within the bounds of a set budget,
-  I want to track the amount of money I spend on beer.
- 
-  Acceptance Criteria:
-  *Prints out the total amount of money spent.
-</pre>
-***
-<pre>
-  As a drinker who wants the most amount of alcohol for the buck,
-  In order to see how much actual alcohol I consume for my money,
-  I want to see how much i am spending on the percentage of alcohol in the beer.
- 
-  Acceptance Criteria:
-  *Prints out the amount of mony spent per ABV.
+  *I can create data.
+  *I cannot make an entry without all fields passed.
 </pre>
 ***
 <pre>
@@ -45,6 +20,63 @@ User Stories for Beer Tracks:
   *I can create, read, update and delete data.
 </pre>
 ***
+<pre>
+  As a beer connoisseur,
+  In order to remember what different beers I have enjoyed,
+  I want to track the different kinds of beer I drink.
+ 
+   *Usage: ruby beer.rb kinds
+ 
+  Acceptance Criteria:
+  *Prints out the different kinds of beer consumed.
+</pre>
+***
+<pre>
+  As a healthy person,
+  In order to keep a leash on my compulsive tendencies,
+  I want to track the oz of beer I drink.
+  
+  *Usage: ruby beer.rb oz
+ 
+  Acceptance Criteria:
+  *Prints out the total amount of beer consumed in ounces.
+</pre>
+***
+
+<pre>
+  As a healthy person,
+  In order to keep a leash on my weight,
+  I want to track the amount of beer I drink.
+  
+  *Usage: ruby beer.rb cal
+ 
+  Acceptance Criteria:
+  *Prints out approximate calories consumed.
+</pre>
+***
+<pre>
+  As a frugal husband,
+  In order to stay within the bounds of a set budget,
+  I want to track the amount of money I spend on beer.
+  
+  *Usage: ruby beer.rb money
+ 
+  Acceptance Criteria:
+  *Prints out the total amount of money spent.
+</pre>
+***
+<pre>
+  As a drinker who wants the most amount of alcohol for the buck,
+  In order to see how much actual alcohol I consume for my money,
+  I want to see how much i am spending on the percentage of alcohol in the beer.
+  
+  *Usage: ruby beer.rb abv
+ 
+  Acceptance Criteria:
+  *Prints out the amount of mony spent per ABV.
+</pre>
+***
+
 
 
 
