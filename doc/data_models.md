@@ -2,21 +2,18 @@ Data Models
 
 <pre>
  Beer
+  BeerID: int
   Name: varchar(30)
-  Cost: int
+  Cost: float(26)
   Oz: int
-  Style
+  ABV: float(20)
+  StyleID: int
 </pre>
 
 <pre>  
  Style
-  IPA
-  APA
-  Stout
-  Porter
-  Brown
-  Wheat
-  Pilsner
-  Malt Liquer
-  Domestic
+  StyleID: int
+  Style_Type: varchar(30)
+  calories_per_ounce: int
+  
 </pre>
