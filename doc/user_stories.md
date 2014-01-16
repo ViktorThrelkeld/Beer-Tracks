@@ -1,5 +1,5 @@
-<pre>
 User Stories for Beer Tracks:
+<pre>
   As a beer connoisseur,
   In order to remember what different beers I have enjoyed,
   I want to track the different kinds of beer I drink.
