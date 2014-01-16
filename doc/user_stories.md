@@ -5,7 +5,7 @@
 ####Create a Journal Entry
 <pre>
   As a person who drinks,
-  In order to add beer consumed,
+  In order to add information about beer consumed,
   I want to be able to create an entry.
     
   *Usage: ruby beer.rb add "kind" "style" "cost" "oz"
