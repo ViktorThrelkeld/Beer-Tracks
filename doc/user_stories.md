@@ -15,6 +15,7 @@ User Stories for Beer Tracks:
  
   Acceptance Criteria:
   *Prints out the total amount of beer consumed in ounces.
+  *Prints out approximate calories consumed.
 </pre>
 ***
 <pre>
