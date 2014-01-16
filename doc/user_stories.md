@@ -17,7 +17,7 @@ User Stories for Beer Tracks:
   I want to be able to update and delete data.
  
   Acceptance Criteria:
-  *I can create, read, update and delete data.
+  *I can update and delete data.
 </pre>
 ***
 <pre>
@@ -46,7 +46,7 @@ User Stories for Beer Tracks:
 <pre>
   As a healthy person,
   In order to keep a leash on my weight,
-  I want to track the amount of beer I drink.
+  I want to track the amount of calories in the beer I drink.
   
   *Usage: ruby beer.rb cal
  
