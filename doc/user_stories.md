@@ -21,9 +21,11 @@
     As a person who may have entered in the wrong data,
     In order to keep accurate records,
     I want to be able to update data.
+    
+     *Usage: ruby beer.rb update"kind" "style" "cost" "oz"
    
     Acceptance Criteria:
-    *I can update and delete data.
+    *I can update data.
 </pre>
 ***
 
@@ -32,6 +34,8 @@
     As a person who may have entered in too much data,
     In order to keep accurate records,
     I want to be able to delete data.
+    
+     *Usage: ruby beer.rb delete "kind" "style" "cost" "oz"
    
     Acceptance Criteria:
     *I can delete data.
