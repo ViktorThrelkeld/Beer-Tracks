@@ -2,10 +2,10 @@ Domain Model
 
 <pre>
 Person
-one person to none or many Beers
+one person to many or none Beers
 
 Beer
-
+Many or none Beers to one Style
 
 Style
 </pre>
