@@ -1,19 +1,35 @@
-Data Models
+Domain Model
 
 <pre>
+Person
+one person to none or many Beers
+
+Beer
+
+
+Style
+</pre>
+
+
+
+
+
+
+data model
+<pre>
  Beer
-  BeerID: int
+  ID: int  PK
   Name: varchar(30)
-  Cost: float(26)
+  Cost: int
   Oz: int
-  StyleID: int
+  StyleID: int  FK
 </pre>
 
 <pre>  
  Style
-  StyleID: int
+  ID: int  PK
   Style_Type: varchar(30)
   calories_per_ounce: int
-  ABV: float
+  ABV: float? (ie 6.5%)
   
 </pre>
