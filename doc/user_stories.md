@@ -23,7 +23,6 @@
     I want to be able to update data.
     
      *Usage: ruby beer.rb update "Yazoo IPA"
-     *Usage: ruby beer.rb update "date"
    
     Acceptance Criteria:
     *I can update data.
@@ -44,7 +43,8 @@
    
     Acceptance Criteria:
     *I can delete data.
-    *Prints out beer names and dates and asks which one to delete.
+    **Prints out beer_name record and asks which date to delete.
+    *I respond with the date needing deletion.
     *Confirms deletion 
 </pre>
 ***
