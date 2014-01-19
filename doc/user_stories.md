@@ -12,7 +12,7 @@
    
   Acceptance Criteria:
   *I can create a data entry.
-  *I cannot make an entry without all fields correctly filled in.
+  *I cannot make an entry without all fields filled in.
 </pre>
 ***
 
@@ -27,7 +27,8 @@
     Acceptance Criteria:
     *I can update data.
     *Prints out beer names and dates and asks which one to update.
-    *I cannot make an entry without all fields correctly filled in.
+    *Promt to update that record.
+    *Prints updated record.
 </pre>
 ***
 
