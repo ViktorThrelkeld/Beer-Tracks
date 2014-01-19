@@ -25,9 +25,10 @@
      *Usage: ruby beer.rb update "Yazoo IPA"
    
     Acceptance Criteria:
-    *I can update data.
-    *Prints out beer_name record and asks which date to update.
-    *I respond with the date needing updated.
+    *I can update data by typing update command.
+    *Prints out beer_name record with dates entered.
+    *Asks which entry date to update.
+    *I respond with a specified date.
     *Prompts to update specific field of that record.
     *Prints updated record.
 </pre>
@@ -42,9 +43,10 @@
      *Usage: ruby beer.rb delete "beer_name"
    
     Acceptance Criteria:
-    *I can delete data.
-    **Prints out beer_name record and asks which date to delete.
-    *I respond with the date needing deletion.
+    *I can delete data by typing delete command.
+    *Prints out beer_name record with dates entered.
+    *Asks which date to delete.
+    *I respond with a specified date.
     *Confirms deletion 
 </pre>
 ***
