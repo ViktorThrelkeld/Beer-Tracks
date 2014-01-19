@@ -22,12 +22,14 @@
     In order to keep accurate records,
     I want to be able to update data.
     
-     *Usage: ruby beer.rb update "beer_name"
+     *Usage: ruby beer.rb update "Yazoo IPA"
+     *Usage: ruby beer.rb update "date"
    
     Acceptance Criteria:
     *I can update data.
-    *Prints out beer names and dates and asks which one to update.
-    *Prompt to update that record.
+    *Prints out beer_name record and asks which date to update.
+    *I respond with the date needing updated.
+    *Prompts to update specific field of that record.
     *Prints updated record.
 </pre>
 ***
