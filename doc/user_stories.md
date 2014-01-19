@@ -8,11 +8,10 @@
   In order to add information about beer consumed,
   I want to be able to create an entry.
     
-  *Usage: ruby beer.rb add "style" 
+  *Usage: ruby beer.rb add "style" "beer_name" "oz" "cost"
    
   Acceptance Criteria:
   *I can create a data entry.
-  *shows fields to fill in.
   *I cannot make an entry without all fields correctly filled in.
 </pre>
 ***
@@ -23,12 +22,11 @@
     In order to keep accurate records,
     I want to be able to update data.
     
-     *Usage: ruby beer.rb update 
+     *Usage: ruby beer.rb update "beer_name"
    
     Acceptance Criteria:
     *I can update data.
-    *asks questions.
-    *shows fields to update.
+    *Prints out beer names and dates and asks which one to update.
     *I cannot make an entry without all fields correctly filled in.
 </pre>
 ***
@@ -39,11 +37,11 @@
     In order to keep accurate records,
     I want to be able to delete data.
     
-     *Usage: ruby beer.rb delete "style"
+     *Usage: ruby beer.rb delete "beer_name"
    
     Acceptance Criteria:
     *I can delete data.
-    *asks questions.
+    *Prints out beer names and dates and asks which one to delete.
     *I cannot delete an entry without confirmation.
 </pre>
 ***
