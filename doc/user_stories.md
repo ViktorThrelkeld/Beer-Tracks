@@ -27,7 +27,7 @@
     Acceptance Criteria:
     *I can update data.
     *Prints out beer names and dates and asks which one to update.
-    *Promt to update that record.
+    *Prompt to update that record.
     *Prints updated record.
 </pre>
 ***
@@ -43,7 +43,7 @@
     Acceptance Criteria:
     *I can delete data.
     *Prints out beer names and dates and asks which one to delete.
-    *I cannot delete an entry without confirmation.
+    *Confirms deletion 
 </pre>
 ***
 
