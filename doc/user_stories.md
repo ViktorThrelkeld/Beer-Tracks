@@ -23,7 +23,7 @@
     I want to be able to update data.
    
     *Usage: ruby beer.rb update <person> <beer_name> <date> <num_oz> 
-     *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 20
+    *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 20
        
     Acceptance Criteria:
     *I can update data by typing update command.
