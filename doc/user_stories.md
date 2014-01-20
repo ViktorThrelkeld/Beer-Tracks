@@ -38,7 +38,7 @@
     I want to be able to update cost.
    
     *Usage: ruby beer.rb update oz "person_name" "beer_name" date num_dollars 
-    *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 15
+    *example: ruby beer.rb update "Brian" "Yazoo Pale Ale" 1-14-14 15
        
     Acceptance Criteria:
     *I can update cost by typing update command and setting cost.
