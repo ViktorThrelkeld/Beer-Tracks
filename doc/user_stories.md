@@ -8,7 +8,7 @@
   In order to add information about beer consumed,
   I want to be able to create an entry.
     
-  *Usage: ruby beer.rb add "style" "beer_name" "oz" "cost"
+  *Usage: ruby beer.rb add "style" "beer_name" "oz" "cost" "date"
    
   Acceptance Criteria:
   *I can create a data entry.
