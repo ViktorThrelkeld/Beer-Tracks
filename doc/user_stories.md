@@ -8,7 +8,7 @@
   In order to add information about beer consumed,
   I want to be able to create an entry.
     
-  *Usage: ruby beer.rb add "persons_name" "style" "beer_name" "oz" "cost" "date"
+  *Usage: ruby beer.rb add "persons_name" "style" "beer_name" date num_oz num_dollars 
    
   Acceptance Criteria:
   *I can create a data entry.
@@ -22,8 +22,8 @@
     In order to keep accurate records,
     I want to be able to update oz.
    
-    *Usage: ruby beer.rb update <person_name> "beer_name" "date" "num_oz" 
-    *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 20
+    *Usage: ruby beer.rb update "person_name" "beer_name" date num_oz 
+    *example: ruby beer.rb update "Brian" "Yazoo Pale Ale" 1-14-14 20
        
     Acceptance Criteria:
     *I can update oz by typing update command and setting oz.
@@ -37,7 +37,7 @@
     In order to keep accurate records,
     I want to be able to update cost.
    
-    *Usage: ruby beer.rb update oz "person_name" "beer_name" "date" "cost" 
+    *Usage: ruby beer.rb update oz "person_name" "beer_name" date num_dollars 
     *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 15
        
     Acceptance Criteria:
