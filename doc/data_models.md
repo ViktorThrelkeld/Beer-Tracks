@@ -31,5 +31,12 @@ data model
   Style_Type: varchar(30)
   calories_per_ounce: int
   ABV: float? (ie 6.5%)
-  
+</pre>
+
+<pre>
+Event
+ EventID PK
+ Date:
+ BeerID FK
+ 
 </pre>
