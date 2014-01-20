@@ -31,6 +31,21 @@
 </pre>
 ***
 
+####Update Cost
+<pre>
+    As a person who may have entered in the wrong data,
+    In order to keep accurate records,
+    I want to be able to update cost.
+   
+    *Usage: ruby beer.rb update oz "person_name" "beer_name" "date" "cost" 
+    *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 15
+       
+    Acceptance Criteria:
+    *I can update cost by typing update command and setting cost.
+    *Prints updated record.
+</pre>
+***
+
 ####Delete Data
 <pre>
     As a person who may have entered in too much data,
@@ -42,7 +57,6 @@
     Acceptance Criteria:
     *I can delete a record by typing delete command.
     *Confirms deletion
-    *Prints out record with dates entered.
 </pre>
 ***
 
