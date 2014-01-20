@@ -1,11 +1,14 @@
 Domain Model
 
 <pre>
-Person
-one person to many or none Beers
+People
+many People to many Events
+
+Events
+One Event to many Beers
 
 Beer
-Many or none Beers to one Style
+Many or No Beers to one Style
 
 Style
 </pre>
@@ -15,7 +18,7 @@ Style
 
 
 
-data model
+Data model
 <pre>
  Beer
   ID: int  PK
@@ -35,8 +38,8 @@ data model
 
 <pre>
 Event
- EventID PK
- Date:
+ ID: int PK
+ Date: timestamp or int
  BeerID FK
  
 </pre>
