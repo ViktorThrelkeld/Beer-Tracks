@@ -16,17 +16,17 @@
 </pre>
 ***
 
-####Update Data
+####Update Oz
 <pre>
     As a person who may have entered in the wrong data,
     In order to keep accurate records,
-    I want to be able to update data.
+    I want to be able to update oz.
    
-    *Usage: ruby beer.rb update <person> <beer_name> <date> <num_oz> 
+    *Usage: ruby beer.rb update oz "person_name" "beer_name" "date" "num_oz" 
     *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 20
        
     Acceptance Criteria:
-    *I can update data by typing update command.
+    *I can update oz by typing update command and setting oz .
     *Prints updated record.
 </pre>
 ***
@@ -37,14 +37,12 @@
     In order to keep accurate records,
     I want to be able to delete data.
     
-     *Usage: ruby beer.rb delete "beer_name"
+     *Usage: ruby beer.rb delete "person_name" "beer_name" "date"
    
     Acceptance Criteria:
-    *I can delete data by typing delete command.
-    *Prints out beer_name record with dates entered.
-    *Asks which date to delete.
-    *I respond with a specified date.
-    *Confirms deletion 
+    *I can delete a record by typing delete command.
+    *Confirms deletion
+    *Prints out record with dates entered.
 </pre>
 ***
 
