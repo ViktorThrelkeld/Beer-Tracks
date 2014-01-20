@@ -22,11 +22,11 @@
     In order to keep accurate records,
     I want to be able to update oz.
    
-    *Usage: ruby beer.rb update oz "person_name" "beer_name" "date" "num_oz" 
+    *Usage: ruby beer.rb update <person_name> "beer_name" "date" "num_oz" 
     *example: ruby beer.rb update Brian "Yazoo Pale Ale" 1-14-14 20
        
     Acceptance Criteria:
-    *I can update oz by typing update command and setting oz .
+    *I can update oz by typing update command and setting oz.
     *Prints updated record.
 </pre>
 ***
