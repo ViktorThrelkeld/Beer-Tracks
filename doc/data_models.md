@@ -40,6 +40,6 @@ Data model
 Event
  ID: int PK
  Date: timestamp or int
- BeerID FK
+ BeerID: int FK
  
 </pre>
