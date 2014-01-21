@@ -13,24 +13,25 @@ class TestEnteringData < MiniTest::Unit::TestCase
   end
 
   def test_error_message_for_missing_cost
-    skip "needs implementation"
-    assert false, "Missing test implementation"
-  end
-
-  def test_error_message_for_cost
-    command = "./beertracks add YazooPale --oz 12"
+    command = "./beertracks add YazooPale --oz 12 --style pale"
     expected = "You must provide the cost of the beer you drank."
     assert_command_output expected, command
   end
 
   def test_error_message_for_missing_oz_and_cost
-    command = "./beertracks add YazooPale"
+    command = "./beertracks add YazooPale -s pale"
     expected = "You must provide the cost and total ounces of the beer you drank."
     assert_command_output expected, command
   end
 
+  def test_error_message_for_missing_oz_and_cost_and_style
+    command = "./beertracks add YazooPale"
+    expected = "You must provide the style and cost and total ounces of the beer you drank."
+    assert_command_output expected, command
+  end
+
   def test_error_message_for_missing_oz
-    command = "./beertracks add YazooPale --cost 5"
+    command = "./beertracks add YazooPale --cost 5 --style pale"
     expected = "You must provide the total ounces of the beer you drank."
     assert_command_output expected, command
   end

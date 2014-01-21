@@ -1,18 +1,39 @@
 #!/usr/bin/env ruby
 
-# puts "You must provide the name of the beer you drank."
+require 'optparse'
 
 command = ARGV[0]
-arguments = ARGV.drop(1)
+name = ARGV[1]
+options = {}
 
-if arguments.empty?
+OptionParser.new do |opts|
+  opts.banner = "Usage: beertracks [command][option]"
+
+  opts.on("-s", "--style", "The style") do |style|
+    options[:style] = style
+  end
+
+  opts.on("-c", "--cost", "The cost") do |cost|
+    options[:cost] = cost
+  end
+
+  opts.on("-o", "--oz", "The ounces") do |ounces|
+    options[:ounces] = ounces
+  end
+end.parse!
+
+if name.nil? or name.empty?
   puts "You must provide the name of the beer you drank."
 else
   missing_things = []
-  unless arguments.include?("--cost")
+  unless options[:style]
+    missing_things << "style"
+  end
+
+  unless options[:cost]
     missing_things << "cost"
   end
-  unless arguments.include?("--oz")
+  unless options[:ounces]
     missing_things << "total ounces"
   end
   puts "You must provide the #{missing_things.join(" and ")} of the beer you drank."
