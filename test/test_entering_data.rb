@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-class TestEntering < MiniTest::Unit::TestCase
+class TestEnteringData < MiniTest::Unit::TestCase
 
   def test_something
     assert false, "Missing test implementation"

@@ -1,0 +1,8 @@
+
+command = ARGV[0]
+arguments =ARGV.drop(1)
+
+if arguments.empty?
+  puts "You must provide the name of beer you are adding"
+else
+  puts ""
