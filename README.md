@@ -12,10 +12,11 @@ Have you ever wondered how much beer you drink or how much that beer is costing 
 
 ## Feature List:
 
-   * I can enter information from my daily intake journal such as receipts: Beer Oz. Consumed, Calories, Price, Where Beer was Purchased
-   * I can query for my average intake or expense for a given day, the total for the week, or how many ABV's consumed in beer.
-   * I can look at the full list of beers I drank and how much i pay per ABV.
-   * I can get a report of how much money I spent and how many ABV's and oz's I took in, as well as an approximate calorie intake. On an average day or a total for the week.
+   * I can enter information from my daily intake journal such as receipts: Beer Oz. Consumed, Calories, Price.
+   * I can Update and delete records.
+   * I can query for my intake or expense for a given day or week.
+   * I can look at the full list of beers I drank.
+   * I can calculate how much i pay per ABV.
 
 ## Interesting Query:
 
