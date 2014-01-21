@@ -1,3 +1,19 @@
 #!/usr/bin/env ruby
 
-puts "You must provide the name of the product you are adding."
+# puts "You must provide the name of the beer you drank."
+
+command = ARGV[0]
+arguments = ARGV.drop(1)
+
+if arguments.empty?
+  puts "You must provide the name of the beer you drank."
+else
+  missing_things = []
+  unless arguments.include?("--cost")
+    missing_things << "cost"
+  end
+  unless arguments.include?("--oz")
+    missing_things << "total ounces"
+  end
+  puts "You must provide the #{missing_things.join(" and ")} of the beer you drank."
+end
