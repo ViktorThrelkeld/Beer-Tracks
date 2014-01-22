@@ -2,7 +2,7 @@ require 'optparse'
 
 class ParseArguments
   def self.parse
-    options = {}
+    options = { environment: "production" }
     OptionParser.new do |opts|
       opts.banner = "Usage: beertracks [command][option]"
 
@@ -16,6 +16,10 @@ class ParseArguments
 
       opts.on("--oz [OUNCES]", "The ounces") do |ounces|
         options[:ounces] = ounces
+      end
+
+      opts.on("--environment [ENV]", "The database environment") do |env|
+       options[:environment] = env
       end
     end.parse!
     options
