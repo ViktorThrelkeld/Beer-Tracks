@@ -2,7 +2,7 @@ require 'minitest/autorun'
 
 class BeerTest < Minitest::Unit::TestCase
   def database
-    @database ||= SQLite3::Database.new("beertracks_test")
+    @database ||= SQLite3::Database.new("db/beertracks_test.sqlite3")
   end
 
   def teardown
