@@ -1,40 +1,14 @@
 #!/usr/bin/env ruby
+require_relative 'lib/parse_arguments'
 
-require 'optparse'
 
 command = ARGV[0]
-name = ARGV[1]
-options = {}
+options = ParseArguments.parse
+options[:name] = ARGV[1]
+error_messages = ParseArguments.validate(options)
 
-OptionParser.new do |opts|
-  opts.banner = "Usage: beertracks [command][option]"
-
-  opts.on("--style [STYLE]", "The style") do |style|
-    options[:style] = style
-  end
-
-  opts.on("--cost [COST]", "The cost") do |cost|
-    options[:cost] = cost
-  end
-
-  opts.on("--oz [OUNCES]", "The ounces") do |ounces|
-    options[:ounces] = ounces
-  end
-end.parse!
-
-if name.nil? or name.empty?
-  puts "You must provide the name of the beer you drank."
-  exit
+if error_messages.empty?
+  puts "Theoretically creating: I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
+else
+  puts error_messages
 end
-
-  missing_things = []
-
-  missing_things << "style" unless options[:style]
-  missing_things << "cost" unless options[:cost]
-  missing_things << "total ounces" unless options[:ounces]
-  unless missing_things.empty?
-    puts "You must provide the #{missing_things.join(" and ")} of the beer you drank."
-  exit
-end
-
-puts "Theoretically creating: I drank #{options[:ounces]} oz of #{name}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"

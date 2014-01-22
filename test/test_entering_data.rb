@@ -43,7 +43,7 @@ class TestEnteringData < MiniTest::Unit::TestCase
 
   def test_error_message_for_missing_beer_name
     command = "./beertracks add"
-    expected = "You must provide the name of the beer you drank."
+    expected = "You must provide the name of the beer you drank.\nYou must provide the style and cost and total ounces of the beer you drank."
     assert_command_output expected, command
   end
 end
