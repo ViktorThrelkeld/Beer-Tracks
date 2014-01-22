@@ -10,7 +10,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_valid_drinking_information_gets_saved
-    `./beertracks add YazooPale --oz 40 --cost 10 --style pale`
+    `./beertracks add YazooPale --oz 40 --cost 10 --style pale --environment test`
     results = database.execute("select name, style, ounces, cost from entries")
     expected = ["YazooPale", "pale", 40, 10]
     assert_equal expected, results[0]

@@ -1,8 +1,9 @@
 require 'minitest/autorun'
+require_relative '../lib/environment'
 
 class BeerTest < Minitest::Unit::TestCase
   def database
-    @database ||= SQLite3::Database.new("db/beertracks_test.sqlite3")
+    Environment.database_connection("test")
   end
 
   def teardown
@@ -10,7 +11,7 @@ class BeerTest < Minitest::Unit::TestCase
   end
 
   def assert_command_output expected, command
-  actual = `#{command}`.strip
+  actual = `#{command} --environment test`.strip
   assert_equal expected, actual
   end
 end
