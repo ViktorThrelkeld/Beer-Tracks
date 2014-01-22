@@ -9,32 +9,32 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: beertracks [command][option]"
 
-  opts.on("-s", "--style", "The style") do |style|
+  opts.on("--style [STYLE]", "The style") do |style|
     options[:style] = style
   end
 
-  opts.on("-c", "--cost", "The cost") do |cost|
+  opts.on("--cost [COST]", "The cost") do |cost|
     options[:cost] = cost
   end
 
-  opts.on("-o", "--oz", "The ounces") do |ounces|
+  opts.on("--oz [OUNCES]", "The ounces") do |ounces|
     options[:ounces] = ounces
   end
 end.parse!
 
 if name.nil? or name.empty?
   puts "You must provide the name of the beer you drank."
-else
-  missing_things = []
-  unless options[:style]
-    missing_things << "style"
-  end
-
-  unless options[:cost]
-    missing_things << "cost"
-  end
-  unless options[:ounces]
-    missing_things << "total ounces"
-  end
-  puts "You must provide the #{missing_things.join(" and ")} of the beer you drank."
+  exit
 end
+
+  missing_things = []
+
+  missing_things << "style" unless options[:style]
+  missing_things << "cost" unless options[:cost]
+  missing_things << "total ounces" unless options[:ounces]
+  unless missing_things.empty?
+    puts "You must provide the #{missing_things.join(" and ")} of the beer you drank."
+  exit
+end
+
+puts "Theoretically creating: I drank #{options[:ounces]} oz of #{name}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
