@@ -11,3 +11,9 @@ end
 
 desc "Run tests"
 task :default => :test
+
+task :bootstrap_database do
+  require 'sqlite3'
+  database = SQLite3::Database.new("beertracks_test")
+  database.execute("CREATE TABLE entries (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), style varchar(20), ounces integer, cost decimal(5,2))")
+end

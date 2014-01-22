@@ -8,7 +8,11 @@ options[:name] = ARGV[1]
 error_messages = ParseArguments.validate(options)
 
 if error_messages.empty?
-  puts "Theoretically creating: I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
+  require "sqlite3"
+  database = SQLite3::Database.new("beertracks_test")
+  statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
+  database.execute(statement)
+  puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
 else
   puts error_messages
 end

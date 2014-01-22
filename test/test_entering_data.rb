@@ -1,20 +1,28 @@
 require_relative 'helper'
+require 'sqlite3'
 
 class TestEnteringData < MiniTest::Unit::TestCase
+class TestEnteringData < BeerTest
   def test_valid_drinking_information_gets_printed
     command = "./beertracks add YazooPale --oz 40 --cost 10 --style pale"
-    expected = "Theoretically creating: I drank 40 oz of YazooPale, which is a pale style beer, costing me $10"
+    expected = "I drank 40 oz of YazooPale, which is a pale style beer, costing me $10"
     assert_command_output expected, command
   end
 
-  def test_valid_entry_gets_saved
-    skip "needs implementation"
-    assert false, "Missing test implementation"
+  def test_valid_drinking_information_gets_saved
+    `./beertracks add YazooPale --oz 40 --cost 10 --style pale`
+    results = database.execute("select name, style, ounces, cost from entries")
+    expected = ["YazooPale", "pale", 40, 10]
+    assert_equal expected, results[0]
+
+    result = database.execute("select count(id) from entries")
+    assert_equal 1, result[0][0]
   end
 
-  def test_invalid_entry_doesnt_get_saved
-    skip "needs implementation"
-    assert false, "Missing test implementation"
+  def test_invalid_drinking_information_doesnt_get_saved
+    `./beertracks add Guiness --style stout`
+    result = database.execute("select count(id) from entries")
+    assert_equal 0, result[0][0]
   end
 
   def test_error_message_for_missing_cost
@@ -46,4 +54,5 @@ class TestEnteringData < MiniTest::Unit::TestCase
     expected = "You must provide the name of the beer you drank.\nYou must provide the style and cost and total ounces of the beer you drank."
     assert_command_output expected, command
   end
+end
 end
