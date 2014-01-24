@@ -16,11 +16,8 @@ options[:name] = ARGV[1]
 else
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?
-    require "sqlite3"
-    database = Environment.database_connection(options[:environment])
-    statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
-    database.execute(statement)
-    puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
+    new_entry = Entries.create(options)
+    puts new_entry
   else
     puts error_messages
   end
