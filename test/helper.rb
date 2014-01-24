@@ -29,5 +29,4 @@ class BeerTest < Minitest::Unit::TestCase
       assert !output.include?(argument), "Output shouldn't include #{argument}: #{output}"
     end
   end
-
 end

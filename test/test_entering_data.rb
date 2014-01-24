@@ -1,7 +1,6 @@
 require_relative 'helper'
 require 'sqlite3'
 
-class TestEnteringData < MiniTest::Unit::TestCase
 class TestEnteringData < BeerTest
   def test_valid_drinking_information_gets_printed
     command = "./beertracks add YazooPale --oz 40 --cost 10 --style pale"
@@ -54,5 +53,4 @@ class TestEnteringData < BeerTest
     expected = "You must provide the name of the beer you drank.\nYou must provide the style and cost and total ounces of the beer you drank."
     assert_command_output expected, command
   end
-end
 end
