@@ -3,16 +3,15 @@ require_relative 'models/entries'
 require_relative 'lib/environment'
 require_relative 'lib/parse_arguments'
 
-
 command = ARGV[0]
 options = ParseArguments.parse
 options[:name] = ARGV[1]
 
-  if command == "search"
-   puts "What do you want to search for?"
-   input = $stdin.gets
-   puts "You asked for: #{input}"
-   # searching!
+if command == "search"
+ puts "What do you want to search for?"
+ input = $stdin.gets
+ puts "You asked for: #{input}"
+ # searching!
 else
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?

@@ -1,6 +1,5 @@
 require_relative '../lib/parse_arguments'
 
-
 class Entries
 
   def self.create(options)
