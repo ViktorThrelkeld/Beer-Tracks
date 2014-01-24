@@ -12,4 +12,17 @@ class Entries
   def self.search(options)
   end
 
+  def update
+  end
+
+  def delete
+
+  end
+  def to_s
+  end
+
+  def self.all
+
+  end
+
 end
