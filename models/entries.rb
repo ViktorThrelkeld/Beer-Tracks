@@ -3,7 +3,7 @@ require_relative '../lib/parse_arguments'
 
 class Entries
 
-  def create(options)
+  def self.create(options)
     require "sqlite3"
     database = Environment.database_connection(options[:environment])
     statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
