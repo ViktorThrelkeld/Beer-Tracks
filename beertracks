@@ -8,11 +8,15 @@ command = ARGV[0]
 options = ParseArguments.parse
 options[:name] = ARGV[1]
 
+  database = Environment.database_connection(options[:environment])
+
   if command == "search"
    puts "What do you want to search for?"
-   input = $stdin.gets
+   input = $stdin.gets.chomp
    puts "You asked for: #{input}"
-   # searching!
+   statement = "select entries.name from entries where name LIKE '%#{input}%'"
+   results = database.execute(statement)
+   puts results
 else
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?

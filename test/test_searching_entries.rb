@@ -1,5 +1,5 @@
 require_relative 'helper'
-require 'sqlite3'
+
 
 class TestSearchingPurchases < BeerTest
   def test_search_returns_relevant_results
@@ -8,7 +8,7 @@ class TestSearchingPurchases < BeerTest
     `./beertracks add "Bush" --style "pilsner" --oz 12 --cost 2 --environment test`
 
     shell_output = ""
-    IO.popen('./beertracks search', 'r+') do |pipe|
+    IO.popen('./beertracks search --environment test', 'r+') do |pipe|
       pipe.puts("Bush")
       pipe.close_write
       shell_output = pipe.read

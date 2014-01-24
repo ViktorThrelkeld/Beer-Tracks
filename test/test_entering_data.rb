@@ -1,5 +1,5 @@
 require_relative 'helper'
-require 'sqlite3'
+
 
 class TestEnteringData < BeerTest
   def test_valid_drinking_information_gets_printed
