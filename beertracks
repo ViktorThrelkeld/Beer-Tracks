@@ -3,25 +3,23 @@
 require_relative 'lib/environment'
 require_relative 'lib/parse_arguments'
 
-
 command = ARGV[0]
 options = ParseArguments.parse
 options[:name] = ARGV[1]
 
-  database = Environment.database_connection(options[:environment])
+Environment.environment = options[:environment] || "production"
+database = Environment.database_connection
 
-  if command == "search"
-   puts "What do you want to search for?"
-   input = $stdin.gets.chomp
-   puts "You asked for: #{input}"
-   statement = "select entries.name from entries where name LIKE '%#{input}%'"
-   results = database.execute(statement)
-   puts results
+if command == "search"
+ puts "What do you want to search for?"
+ input = $stdin.gets.chomp
+ puts "You asked for: #{input}"
+ statement = "select entries.name from entries where name LIKE '%#{input}%'"
+ results = database.execute(statement)
+ puts results
 else
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?
-    require "sqlite3"
-    database = Environment.database_connection(options[:environment])
     statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
     database.execute(statement)
     puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"

@@ -13,16 +13,16 @@ task :default => :test
 
 desc 'create the production database setup'
 task :bootstrap_database do
-  require 'sqlite3'
-   database = Environment.database_connection("production")
+  Environment.environment = "production"
+  database = Environment.database_connection
    create_tables(database)
 end
 
 desc 'prepare the test database'
 task :test_prepare do
-  require 'sqlite3'
   File.delete("db/beertracks_test.sqlite3")
-  database = Environment.database_connection("test")
+  Environment.environment = "test"
+  database = Environment.database_connection
   create_tables(database)
 end
 

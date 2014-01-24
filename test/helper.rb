@@ -3,7 +3,8 @@ require_relative '../lib/environment'
 
 class BeerTest < Minitest::Unit::TestCase
   def database
-    Environment.database_connection("test")
+    Environment.environment = "test"
+    Environment.database_connection
   end
 
   def teardown
