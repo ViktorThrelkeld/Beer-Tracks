@@ -20,7 +20,7 @@ if command == "search"
 elsif command == "add"
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?
-    entry = Entries.new(name: options[:name], style: options[:style], ounces: options[:ounces], cost: options[:cost])
+    entry = Entries.new(options)
     entry.save
     puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
   else

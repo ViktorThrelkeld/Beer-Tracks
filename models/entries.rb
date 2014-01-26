@@ -2,10 +2,8 @@ class Entries
   attr_accessor :name, :style, :ounces, :cost
 
   def initialize attributes = {}
-    # Long Way: @price = attributes[:price]
-    # Short Way:
-    attributes.each_pair do |attribute, value|
-      self.send("#{attribute}=", value)
+    [:name, :style, :ounces, :cost].each do |attr|
+      self.send("#{attr}=", attributes[attr])
     end
   end
 
