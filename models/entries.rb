@@ -9,6 +9,11 @@ class Entries
     end
   end
 
+  def save
+    database = Environment.database_connection
+    database.execute("insert into entries(name, style, ounces, cost) values('#{name}', '#{style}', #{ounces}, #{cost})")
+  end
+
   def self.all
     database = Environment.database_connection
     database.results_as_hash = true

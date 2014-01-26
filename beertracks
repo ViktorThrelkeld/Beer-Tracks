@@ -20,8 +20,8 @@ if command == "search"
 elsif command == "add"
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?
-    statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
-    database.execute(statement)
+    entry = Entries.new(name: options[:name], style: options[:style], ounces: options[:ounces], cost: options[:cost])
+    entry.save
     puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
   else
     puts error_messages
