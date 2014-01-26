@@ -3,15 +3,15 @@ require_relative 'helper'
 
 class TestEnteringData < BeerTest
   def test_valid_drinking_information_gets_printed
-    command = "./beertracks add YazooPale --oz 40 --cost 10 --style pale"
-    expected = "I drank 40 oz of YazooPale, which is a pale style beer, costing me $10"
+    command = "./beertracks add 'Yazoo Pale' --ounces 40 --cost 10 --style pale"
+    expected = "I drank 40 oz of Yazoo Pale, which is a pale style beer, costing me $10"
     assert_command_output expected, command
   end
 
   def test_valid_drinking_information_gets_saved
-    `./beertracks add YazooPale --oz 40 --cost 10 --style pale --environment test`
+    `./beertracks add 'Yazoo Pale' --ounces 40 --cost 10 --style pale --environment test`
     results = database.execute("select name, style, ounces, cost from entries")
-    expected = ["YazooPale", "pale", 40, 10]
+    expected = ["Yazoo Pale", "pale", 40, 10]
     assert_equal expected, results[0]
 
     result = database.execute("select count(id) from entries")
@@ -25,7 +25,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_error_message_for_missing_cost
-    command = "./beertracks add YazooPale --oz 12 --style pale"
+    command = "./beertracks add 'Yazoo Pale' --ounces 12 --style pale"
     expected = "You must provide the cost of the beer you drank."
     assert_command_output expected, command
   end

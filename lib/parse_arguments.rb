@@ -14,7 +14,7 @@ class ParseArguments
         options[:cost] = cost
       end
 
-      opts.on("--oz [OUNCES]", "The ounces") do |ounces|
+      opts.on("--ounces [OUNCES]", "The ounces") do |ounces|
         options[:ounces] = ounces
       end
 

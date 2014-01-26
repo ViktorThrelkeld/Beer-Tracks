@@ -2,9 +2,9 @@ require_relative 'helper'
 
 class TestListingEntries < BeerTest
   def test_list_returns_relevant_results
-    `./beertracks add Stella --style pilsner --oz 12 --cost 5 --environment test`
-    `./beertracks add Guiness --style stout --oz 12 --cost 5.50 --environment test`
-    `./beertracks add Bush --style pilsner --oz 12 --cost 5.50 --environment test`
+    `./beertracks add Stella --style pilsner --ounces 12 --cost 5 --environment test`
+    `./beertracks add Guiness --style stout --ounces 12 --cost 5.50 --environment test`
+    `./beertracks add Bush --style pilsner --ounces 12 --cost 5.50 --environment test`
 
     command = "./beertracks list"
     expected = <<EOS.chomp
