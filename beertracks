@@ -17,7 +17,7 @@ if command == "search"
  statement = "select entries.name from entries where name LIKE '%#{input}%'"
  results = database.execute(statement)
  puts results
-else
+elsif command == "add"
   error_messages = ParseArguments.validate(options)
   if error_messages.empty?
     statement = "insert into entries(name, style, ounces, cost) values('#{options[:name]}', '#{options[:style]}', #{options[:ounces]}, #{options[:cost]})"
@@ -26,4 +26,9 @@ else
   else
     puts error_messages
   end
+elsif command == "list"
+  puts "All Entries:"
+  puts Entries.all
+else
+  puts "Command not implemented"
 end

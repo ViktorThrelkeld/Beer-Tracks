@@ -9,7 +9,17 @@ class Entries
     end
   end
 
+  def self.all
+    database = Environment.database_connection
+    database.results_as_hash = true
+    results = database.execute("select * from entries order by name ASC")
+    results.map do |row_hash|
+      Entries.new(name: row_hash["name"], style: row_hash["style"], ounces: row_hash["ounces"], cost: row_hash["cost"])
+    end
+  end
+
   def to_s
-    "#{name}: #{style} style, #{ounces} oz, $#{cost}"
+    formatted_cost = sprintf('%.2f', cost)
+    "#{name}: #{style} style, #{ounces} oz, $#{formatted_cost}"
   end
 end

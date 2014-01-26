@@ -1,4 +1,5 @@
 require_relative 'database'
+require_relative '../models/entries'
 require 'logger'
 
 class Environment
