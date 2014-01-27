@@ -2,8 +2,12 @@ require 'minitest/autorun'
 require_relative '../lib/environment'
 
 class BeerTest < Minitest::Unit::TestCase
-  def database
+
+  def setup
     Environment.environment = "test"
+  end
+
+  def database
     Environment.database_connection
   end
 
