@@ -14,6 +14,14 @@ class ParseArguments
         options[:cost] = cost
       end
 
+      opts.on("--id [ID]", "The id of the object we are editing") do |id|
+        options[:id] = id
+      end
+
+      opts.on("--name [NAME]", "The name of the entry") do |name|
+        options[:name] = name
+      end
+
       opts.on("--ounces [OUNCES]", "The ounces") do |ounces|
         options[:ounces] = ounces
       end

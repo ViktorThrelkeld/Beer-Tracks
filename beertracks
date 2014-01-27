@@ -5,7 +5,7 @@ require_relative 'lib/parse_arguments'
 
 command = ARGV[0]
 options = ParseArguments.parse
-options[:name] = ARGV[1]
+options[:name] ||= ARGV[1]
 
 Environment.environment = options[:environment] || "production"
 database = Environment.database_connection
@@ -29,6 +29,14 @@ elsif command == "add"
 elsif command == "list"
   puts "All Entries:"
   puts Entries.all
+
+elsif command == "edit"
+  if entries = Entries.find(options[:id])
+    entries.update(options)
+    puts "Entry #{entries.id} is now named #{entries.name}, which is a #{entries.style} style, with #{entries.ounces} ounces and $#{entries.cost} cost."
+  else
+    puts "Entry #{options[:id]} couldn't be found."
+  end
 else
   puts "Command not implemented"
 end
