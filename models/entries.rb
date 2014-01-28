@@ -71,11 +71,7 @@ class Entries
   end
 
   def ==(other)
-    if other.is_a? Entries
-      self.to_s == other.to_s
-    else
-      false
-    end
+     other.is_a?(Entries) && self.to_s == other.to_s
   end
 
   protected
