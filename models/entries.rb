@@ -40,27 +40,21 @@ class Entries
     end
   end
 
-  def self.search(search_term)
+  def self.search(search_term = nil)
     database = Environment.database_connection
     database.results_as_hash = true
-    results = database.execute("select entries.name from entries where name LIKE '%#{search_term}%'")
+    results = database.execute("select entries.* from entries where name LIKE '%#{search_term}%' order by name ASC")
     results.map do |row_hash|
-    entries = Entries.new(name: row_hash["name"], style: row_hash["style"], ounces: row_hash["ounces"], cost: row_hash["cost"])
-    entries.send("id=", row_hash["id"])
-    entries
+      entries = Entries.new(name: row_hash["name"], style: row_hash["style"], ounces: row_hash["ounces"], cost: row_hash["cost"])
+      entries.send("id=", row_hash["id"])
+      entries
     end
   end
 
   def self.all
-    database = Environment.database_connection
-    database.results_as_hash = true
-    results = database.execute("select * from entries order by name ASC")
-    results.map do |row_hash|
-    entries = Entries.new(name: row_hash["name"], style: row_hash["style"], ounces: row_hash["ounces"], cost: row_hash["cost"])
-    entries.send("id=", row_hash["id"])
-    entries
-    end
+    search
   end
+
 
   def cost
     sprintf('%.2f', @cost) if @cost

@@ -58,11 +58,12 @@ class TestEntry < BeerTest
 
 
   def test_search_returns_appropriate_results
-    Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
-    Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
-    Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
-    results = Entries.search("Guinness")
-    assert_equal ["Guinness", "Guinness Draught"], results.map(&:name)
+    entry1 = Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
+    entry2 = Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
+    entry3 = Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
+    expected = [entry2, entry3]
+    actual = Entries.search("Guinness")
+    assert_equal expected, actual
   end
 
   def test_search_returns_empty_array_if_no_results

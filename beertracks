@@ -19,11 +19,7 @@ class BeerTracks
 
     if options[:command] == "search"
       search_term = ask("What do you want to search for?")
-
-      puts "You asked for: #{search_term}"
-      statement = "select entries.name from entries where name LIKE '%#{search_term}%'"
-      results = database.execute(statement)
-      puts results
+      search_entries_for(search_term)
     elsif options[:command] == "add"
       error_messages = ArgumentParser.validate(options)
       if error_messages.empty?
@@ -48,10 +44,15 @@ class BeerTracks
   end
 end
 
-def list_entries()
-  puts "All Entries:"
-  puts Entries.all
-end
+  def list_entries()
+    puts "All Entries:"
+    puts Entries.all
+  end
+
+  def search_entries_for(search_term)
+    puts "You asked for: #{search_term}"
+    puts Entries.search(search_term)
+  end
 
 beertracks = BeerTracks.new()
 beertracks.main()
