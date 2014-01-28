@@ -48,6 +48,35 @@ class TestEntry < BeerTest
     refute_nil entries.id, "Entries id shouldn't be nil"
   end
 
+  def test_search_returns_purchase_objects
+    Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
+    results = Entries.search("Guinness")
+    assert results.all?{ |result| result.is_a? Entries }, "Not all results were Entries"
+  end
+
+
+  def test_search_returns_appropriate_results
+    Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
+    results = Entries.search("Guinness")
+    assert_equal ["Guinness", "Guinness Draught"], results.map(&:name)
+  end
+
+  def test_search_returns_empty_array_if_no_results
+    Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
+    Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
+    results = Entries.search("Soda")
+    assert_equal [], results
+  end
+
+
+
+
+
   def test_all_returns_all_entries_in_alphabetical_order
     Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
     Entries.create(name: "bar", style: "stout", ounces: "12", cost: "5.50")

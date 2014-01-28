@@ -40,6 +40,17 @@ class Entries
     end
   end
 
+  def self.search(search_term)
+    database = Environment.database_connection
+    database.results_as_hash = true
+    results = database.execute("select entries.name from entries where name LIKE '%#{search_term}%'")
+    results.map do |row_hash|
+    entries = Entries.new(name: row_hash["name"], style: row_hash["style"], ounces: row_hash["ounces"], cost: row_hash["cost"])
+    entries.send("id=", row_hash["id"])
+    entries
+    end
+  end
+
   def self.all
     database = Environment.database_connection
     database.results_as_hash = true
