@@ -2,41 +2,51 @@
 
 require_relative 'lib/environment'
 require_relative 'lib/parse_arguments'
+require_relative 'lib/interactions'
 
-command = ARGV[0]
-options = ParseArguments.parse
-options[:name] ||= ARGV[1]
+class BeerTracks
+  include Interactions
 
-Environment.environment = options[:environment] || "production"
-database = Environment.database_connection
+  def main
+    command = ARGV[0]
+    options = ParseArguments.parse
+    options[:name] ||= ARGV[1]
 
-if command == "search"
- puts "What do you want to search for?"
- input = $stdin.gets.chomp
- puts "You asked for: #{input}"
- statement = "select entries.name from entries where name LIKE '%#{input}%'"
- results = database.execute(statement)
- puts results
-elsif command == "add"
-  error_messages = ParseArguments.validate(options)
-  if error_messages.empty?
-    entry = Entries.new(options)
-    entry.save
-    puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
-  else
-    puts error_messages
+    Environment.environment = options[:environment] || "production"
+    database = Environment.database_connection
+
+    if command == "search"
+      search_term = ask("What do you want to search for?")
+
+      puts "You asked for: #{search_term}"
+      statement = "select entries.name from entries where name LIKE '%#{search_term}%'"
+      results = database.execute(statement)
+      puts results
+    elsif command == "add"
+      error_messages = ParseArguments.validate(options)
+      if error_messages.empty?
+        entry = Entries.new(options)
+        entry.save
+        puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:style]} style beer, costing me $#{options[:cost]}"
+      else
+        puts error_messages
+      end
+    elsif command == "list"
+      puts "All Entries:"
+      puts Entries.all
+
+    elsif command == "edit"
+      if entries = Entries.find(options[:id])
+        entries.update(options)
+        puts "Entry #{entries.id} is now named #{entries.name}, which is a #{entries.style} style, with #{entries.ounces} ounces and $#{entries.cost} cost."
+      else
+        puts "Entry #{options[:id]} couldn't be found."
+      end
+    else
+      puts "Command not implemented"
+    end
   end
-elsif command == "list"
-  puts "All Entries:"
-  puts Entries.all
-
-elsif command == "edit"
-  if entries = Entries.find(options[:id])
-    entries.update(options)
-    puts "Entry #{entries.id} is now named #{entries.name}, which is a #{entries.style} style, with #{entries.ounces} ounces and $#{entries.cost} cost."
-  else
-    puts "Entry #{options[:id]} couldn't be found."
-  end
-else
-  puts "Command not implemented"
 end
+
+beertracks = BeerTracks.new()
+beertracks.main()
