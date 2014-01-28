@@ -34,9 +34,7 @@ class BeerTracks
         puts error_messages
       end
     elsif options[:command] == "list"
-      puts "All Entries:"
-      puts Entries.all
-
+      list_entries()
     elsif options[:command] == "edit"
       if entries = Entries.find(options[:id])
         entries.update(options)
@@ -48,6 +46,11 @@ class BeerTracks
       puts "Command not implemented"
     end
   end
+end
+
+def list_entries()
+  puts "All Entries:"
+  puts Entries.all
 end
 
 beertracks = BeerTracks.new()
