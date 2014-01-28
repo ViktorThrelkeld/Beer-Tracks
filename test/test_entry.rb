@@ -48,7 +48,7 @@ class TestEntry < BeerTest
     refute_nil entries.id, "Entries id shouldn't be nil"
   end
 
-  def test_search_returns_purchase_objects
+  def test_search_returns_entries_objects
     Entries.create(name: "Foo", style: "pilsner", ounces: "12", cost: "5.50")
     Entries.create(name: "Guinness", style: "pilsner", ounces: "12", cost: "5.50")
     Entries.create(name: "Guinness Draught", style: "pilsner", ounces: "12", cost: "5.50")
@@ -73,10 +73,6 @@ class TestEntry < BeerTest
     assert_equal [], results
   end
 
-
-
-
-
   def test_all_returns_all_entries_in_alphabetical_order
     Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
     Entries.create(name: "bar", style: "stout", ounces: "12", cost: "5.50")
@@ -95,4 +91,28 @@ class TestEntry < BeerTest
     results = Entries.all
     assert_equal [], results
   end
+
+ def test_equality_on_same_object
+    entries = Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
+
+    assert entries == entries
+  end
+
+  def test_equality_with_different_class
+    entries = Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
+    refute entries == "Entries"
+  end
+
+  def test_equality_with_different_entries
+    entries1 = Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
+    entries2 = Entries.create(name: "bar", style: "stout", ounces: "12", cost: "5.50")
+    refute entries1 == entries2
+  end
+
+  def test_equality_with_same_entries_different_object_id
+    entries1 = Entries.create(name: "foo", style: "stout", ounces: "12", cost: "5.50")
+    entries2 = Entries.find(entries1.id)
+    assert entries1 == entries2
+  end
+
 end

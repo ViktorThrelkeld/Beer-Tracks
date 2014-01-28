@@ -70,6 +70,14 @@ class Entries
     "#{name}: #{style} style, #{ounces} oz, $#{cost}, id: #{id}"
   end
 
+  def ==(other)
+    if other.is_a? Entries
+      self.to_s == other.to_s
+    else
+      false
+    end
+  end
+
   protected
 
   def id=(id)
