@@ -6,23 +6,27 @@ require_relative 'lib/interactions'
 
 class BeerTracks
   include Interactions
+  attr_reader :options
+
+  def initialize
+
+    @options = ParseArguments.parse
+    @options[:name] ||= ARGV[1]
+    @options[:command] = ARGV[0]
+    Environment.environment = @options[:environment] || "production"
+  end
 
   def main
-    command = ARGV[0]
-    options = ParseArguments.parse
-    options[:name] ||= ARGV[1]
-
-    Environment.environment = options[:environment] || "production"
     database = Environment.database_connection
 
-    if command == "search"
+    if options[:command] == "search"
       search_term = ask("What do you want to search for?")
 
       puts "You asked for: #{search_term}"
       statement = "select entries.name from entries where name LIKE '%#{search_term}%'"
       results = database.execute(statement)
       puts results
-    elsif command == "add"
+    elsif options[:command] == "add"
       error_messages = ParseArguments.validate(options)
       if error_messages.empty?
         entry = Entries.new(options)
@@ -31,11 +35,11 @@ class BeerTracks
       else
         puts error_messages
       end
-    elsif command == "list"
+    elsif options[:command] == "list"
       puts "All Entries:"
       puts Entries.all
 
-    elsif command == "edit"
+    elsif options[:command] == "edit"
       if entries = Entries.find(options[:id])
         entries.update(options)
         puts "Entry #{entries.id} is now named #{entries.name}, which is a #{entries.style} style, with #{entries.ounces} ounces and $#{entries.cost} cost."
