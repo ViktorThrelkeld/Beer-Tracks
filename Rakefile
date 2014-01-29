@@ -28,5 +28,5 @@ end
 
 def create_tables(database_connection)
   database_connection.execute("CREATE TABLE entries (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), style varchar(20), ounces integer, cost decimal(5,2))")
-  # database_connection.execute("CREATE TABLE beers (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), description text, ")
+  database_connection.execute("CREATE TABLE categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50))")
 end

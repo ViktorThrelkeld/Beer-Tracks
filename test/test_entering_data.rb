@@ -9,6 +9,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_valid_drinking_information_gets_saved
+    database.results_as_hash = false
     `./beertracks add 'Yazoo Pale' --ounces 40 --cost 10 --style pale --environment test`
     results = database.execute("select name, style, ounces, cost from entries")
     expected = ["Yazoo Pale", "pale", 40, 10]
