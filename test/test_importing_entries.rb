@@ -32,8 +32,8 @@ class TestImportingEntries < BeerTest
 
   def test_categories_are_created_as_needed
     skip
-    Category.create(name: "stout")
-    Category.create(name: "Pets")
+    Category.find_or_create(name: "stout")
+    Category.find_or_create(name: "Pets")
     import_data
     assert_equal 4, Category.all.count, "The categories were: #{Category.all.map(&:name)}"
   end
