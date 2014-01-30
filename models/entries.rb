@@ -1,5 +1,5 @@
 class Entries
-  attr_accessor :name, :type, :ounces, :cost
+  attr_accessor :name, :type, :ounces, :cost, :style
   attr_reader :id
 
   def initialize attributes = {}
@@ -27,10 +27,11 @@ class Entries
 
   def save
     database = Environment.database_connection
+    style_id = style.nil? ? "NULL" : style.id
     if id
-      database.execute("update entries set name = '#{name}', type = '#{type}', ounces = '#{ounces}', cost = '#{cost}' where id = #{id}")
+      database.execute("update entries set name = '#{name}', type = '#{type}', ounces = '#{ounces}', cost = '#{cost}', style_id = #{style_id} where id = #{id}")
     else
-      database.execute("insert into entries(name, type, ounces, cost) values('#{name}', '#{type}', #{ounces}, #{cost})")
+      database.execute("insert into entries(name, type, ounces, cost, style_id) values('#{name}', '#{type}', #{ounces}, #{cost}, #{style_id})")
       @id = database.last_insert_row_id
     end
   end
@@ -53,7 +54,13 @@ class Entries
     database.results_as_hash = true
     results = database.execute("select entries.* from entries where name LIKE '%#{search_term}%' order by name ASC")
     results.map do |row_hash|
-      entries = Entries.new(name: row_hash["name"], type: row_hash["type"], ounces: row_hash["ounces"], cost: row_hash["cost"])
+      entries = Entries.new(
+        name: row_hash["name"],
+        type: row_hash["type"],
+        ounces: row_hash["ounces"],
+        cost: row_hash["cost"])
+      style = Style.all.find{|style| style.id == row_hash["style_id"]}
+      entries.style = style
       entries.send("id=", row_hash["id"])
       entries
     end
@@ -83,7 +90,7 @@ class Entries
   end
 
   def update_attributes(attributes)
-    [:name, :type, :ounces, :cost].each do |attr|
+    [:name, :type, :ounces, :cost, :style].each do |attr|
       if attributes[attr]
         self.send("#{attr}=", attributes[attr])
       end

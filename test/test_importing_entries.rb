@@ -12,12 +12,13 @@ class TestImportingEntries < BeerTest
   end
 
   def test_entries_are_imported_fully
-    skip
     import_data
-    expected = ["Guinness Draught, 20, 5.00, stout",
-    "Bush, 25, 5.00, pilsner",
-    "Heineken, 12, 5.00, pilsner",
-    "Anchor Steam, 12, 5.00, porter"]
+    expected = [
+    "Anchor Steam, 12, 4.50, porter",
+    "Bush, 25, 2.70, pilsner",
+    "Guinness, 20, 10.00, stout",
+    "Yazoo Pale Ale, 16, 5.50, IPA"
+    ]
     actual = Entries.all.map do |beer|
       "#{beer.name}, #{beer.ounces}, #{beer.cost}, #{beer.style.name}"
     end

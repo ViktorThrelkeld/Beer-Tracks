@@ -48,6 +48,34 @@ class TestEntry < BeerTest
     refute_nil entries.id, "Entries id shouldn't be nil"
   end
 
+  def test_save_saves_style_id
+    style = Style.find_or_create("Barley Wine")
+    entries = Entries.create(name: "Foo", type: "Barley Wine", ounces: 6, cost: 5.00, style: style)
+    style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    assert_equal style.id, style_id, "Style.id and entries.style_id should be the same"
+  end
+
+  def test_save_update_style_id
+    style1 = Style.find_or_create("APA")
+    style2 = Style.find_or_create("Lager")
+    entries = Entries.create(name: "Foo", type: "APA", ounces: 20, cost: 5.50, style: style1)
+    entries.style = style2
+    entries.save
+    style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    assert_equal style2.id, style_id, "Style2.id and entries.style_id should be the same"
+  end
+
+  def test_find_returns_nil_if_unfindable
+    assert_nil Entries.find(12342)
+  end
+
+  def test_find_returns_the_row_as_purchase_object
+    entries = Entries.create(name: "Foo", type: "stout", ounces: 6, cost:6.00)
+    found = Entries.find(entries.id)
+    assert_equal entries.name, found.name
+    assert_equal entries.id, found.id
+  end
+
   def test_search_returns_entries_objects
     Entries.create(name: "Foo", type: "pilsner", ounces: "12", cost: "5.50")
     Entries.create(name: "Guinness", type: "pilsner", ounces: "12", cost: "5.50")
@@ -115,5 +143,4 @@ class TestEntry < BeerTest
     entries2 = Entries.find(entries1.id)
     assert entries1 == entries2
   end
-
 end
