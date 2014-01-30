@@ -19,7 +19,7 @@ class TestImportingEntries < BeerTest
     "Heineken, 12, 5.00, pilsner",
     "Anchor Steam, 12, 5.00, porter"]
     actual = Entries.all.map do |beer|
-      "#{beer.name}, #{beer.ounces}, #{beer.cost}, #{beer.category.name}"
+      "#{beer.name}, #{beer.ounces}, #{beer.cost}, #{beer.style.name}"
     end
     assert_equal expected, actual
   end
@@ -27,21 +27,21 @@ class TestImportingEntries < BeerTest
   def test_extra_categories_arent_created
     skip
     import_data
-    assert_equal 4, Category.all.count
+    assert_equal 4, Style.all.count
   end
 
   def test_categories_are_created_as_needed
     skip
-    Category.find_or_create(name: "stout")
-    Category.find_or_create(name: "Pets")
+    Style.find_or_create(name: "stout")
+    Style.find_or_create(name: "Pets")
     import_data
-    assert_equal 4, Category.all.count, "The categories were: #{Category.all.map(&:name)}"
+    assert_equal 4, Style.all.count, "The categories were: #{Style.all.map(&:name)}"
   end
 
   def test_data_isnt_duplicated
     skip
     import_data
     expected = ["stout", "pilsner", "porter", "IPA"]
-    assert_equal expected, Category.all.map(&:name)
+    assert_equal expected, Style.all.map(&:name)
   end
 end

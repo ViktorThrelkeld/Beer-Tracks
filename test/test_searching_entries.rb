@@ -3,9 +3,9 @@ require_relative 'helper'
 
 class TestSearchingPurchases < BeerTest
   def test_search_returns_relevant_results
-    `./beertracks add "YazooPale" --style "pale" --ounces 20 --cost 8 --environment test`
-    `./beertracks add "Guiness" --style "stout" --ounces 12 --cost 12 --environment test`
-    `./beertracks add "Bush" --style "pilsner" --ounces 12 --cost 2 --environment test`
+    `./beertracks add "YazooPale" --type "pale" --ounces 20 --cost 8 --environment test`
+    `./beertracks add "Guiness" --type "stout" --ounces 12 --cost 12 --environment test`
+    `./beertracks add "Bush" --type "pilsner" --ounces 12 --cost 2 --environment test`
 
     shell_output = ""
     IO.popen('./beertracks search --environment test', 'r+') do |pipe|
