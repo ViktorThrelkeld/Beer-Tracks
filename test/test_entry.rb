@@ -29,7 +29,7 @@ class TestEntry < BeerTest
   def test_update_is_reflected_in_existing_instance
     entries = Entries.create(name: "Foo", style: "stout", ounces: "12", cost: "5.50")
     entries.update(name: "Bar", style: "stout", ounces: "20", cost: "10.50")
-    expected = ["Bar", "stout", "20", "10.50" ]
+    expected = ["Bar", "stout", 20, "10.50" ]
     actual = [ entries.name, entries.style, entries.ounces, entries.cost]
     assert_equal expected, actual
   end

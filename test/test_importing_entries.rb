@@ -3,13 +3,12 @@ require_relative '../lib/importer'
 
 class TestImportingEntries < BeerTest
   def import_data
-    Importer.import("test/sample_entries_data.csv")
+    Importer.import("data/sample_entries_data.csv")
   end
 
   def test_the_correct_number_of_entries_are_imported
-    skip
     import_data
-    assert 4, Entries.all.count
+    assert_equal 4, Entries.all.count
   end
 
   def test_entries_are_imported_fully
@@ -28,15 +27,15 @@ class TestImportingEntries < BeerTest
   def test_extra_categories_arent_created
     skip
     import_data
-    assert 4, Category.all.count
+    assert_equal 4, Category.all.count
   end
 
   def test_categories_are_created_as_needed
     skip
-    Category.create("stout")
-    Category.create("Pets")
+    Category.create(name: "stout")
+    Category.create(name: "Pets")
     import_data
-    assert 4, Category.all.count
+    assert_equal 4, Category.all.count, "The categories were: #{Category.all.map(&:name)}"
   end
 
   def test_data_isnt_duplicated

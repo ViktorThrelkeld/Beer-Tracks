@@ -6,6 +6,14 @@ class Entries
     update_attributes(attributes)
   end
 
+  def cost=(cost)
+    @cost = cost.to_f
+  end
+
+  def ounces=(ounces)
+    @ounces = ounces.to_i
+  end
+
   def self.create(attributes = {})
     entries = Entries.new(attributes)
     entries.save
