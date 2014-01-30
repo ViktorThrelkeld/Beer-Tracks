@@ -13,7 +13,7 @@ class BeerTest < Minitest::Unit::TestCase
 
   def teardown
     database.execute("delete from entries")
-    database.execute("delete from categories")
+    database.execute("delete from style")
   end
 
   def assert_command_output expected, command
