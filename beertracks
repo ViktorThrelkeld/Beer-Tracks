@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+require 'highline/import'
 require_relative 'lib/environment'
 require_relative 'lib/argument_parser'
 require_relative 'lib/interactions'
@@ -25,7 +25,40 @@ class BeerTracks
       if error_messages.empty?
         entry = Entries.new(options)
         entry.save
-        puts "You drank #{options[:ounces]} oz of #{options[:name]}, costing you $#{options[:cost]}"
+        puts "Congratulations! You drank #{options[:ounces]} oz of #{options[:name]}, costing you $#{options[:cost]}."
+        puts "                                                         o
+   /^^\\     |----\\     |-----   |-----   |----\\    () .         .
+   |  |     |     |    |        |        |     |         .      ()
+   |  |     |------\\   |----    |----    |_____
+  /~~~~\\    |       |  |        |        |     \\     o
+  |    |    |_______|  |______  |______  |     |             ()
+  | /\\ |    ---------  _____                                     .
+  | PBR|         |     |     \\     / \\    /----\\   |   /   /----\\
+  | \\/ |         |     |_____/    /___\\   |        |__/    \\___
+  |____|         |     |      \\  /     \\  |        |  \\         \\
+                 |     |       \\/       \\ \\_____/  |   \\   \\____/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+
+        # choose do |menu|
+        #   menu.prompt = 'Which kind of the styles above represents this beer?'
+        #   menu.choices('Stout', 'Porter', 'Pilsner', "Barley Wine", 'IPA') do |chosen|
+        #     options[:style_id] = chosen
+        #     case chosen
+        #     when 'Stout'
+        #       options[:style_id] = 1
+        #     when 'Porter'
+        #       options[:style_id] = 2
+        #     when 'Pilsner'
+        #       options[:style_id] = 3
+        #     when "Barley Wine"
+        #       options[:style_id] = 4
+        #     when 'IPA'
+        #       options[:style_id] = 5
+        #     end
+        #   end
+        # end
       else
         puts error_messages
       end
