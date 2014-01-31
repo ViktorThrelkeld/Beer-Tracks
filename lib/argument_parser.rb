@@ -6,10 +6,6 @@ class ArgumentParser
     OptionParser.new do |opts|
       opts.banner = "Usage: beertracks [command][option]"
 
-      opts.on("--type [TYPE]", "The type") do |type|
-        options[:type] = type
-      end
-
       opts.on("--cost [COST]", "The cost") do |cost|
         options[:cost] = cost
       end
@@ -42,7 +38,6 @@ class ArgumentParser
     end
 
     missing_things = []
-    missing_things << "type" unless options[:type]
     missing_things << "cost" unless options[:cost]
     missing_things << "total ounces" unless options[:ounces]
     unless missing_things.empty?

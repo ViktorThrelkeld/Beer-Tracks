@@ -25,7 +25,7 @@ class BeerTracks
       if error_messages.empty?
         entry = Entries.new(options)
         entry.save
-        puts "I drank #{options[:ounces]} oz of #{options[:name]}, which is a #{options[:type]} type beer, costing me $#{options[:cost]}"
+        puts "You drank #{options[:ounces]} oz of #{options[:name]}, costing you $#{options[:cost]}"
       else
         puts error_messages
       end
@@ -34,7 +34,7 @@ class BeerTracks
     elsif options[:command] == "edit"
       if entries = Entries.find(options[:id])
         entries.update(options)
-        puts "Entry #{entries.id} is now named #{entries.name}, which is a #{entries.type} type, with #{entries.ounces} ounces and $#{entries.cost} cost."
+        puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost."
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
