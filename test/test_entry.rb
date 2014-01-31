@@ -2,6 +2,12 @@ require_relative 'helper'
 require_relative '../models/entries'
 
 class TestEntry < BeerTest
+  def test_style_defaults_to_unknown
+    entries = Entries.create(name: "Foo", ounces: "20", cost: "10")
+    assert_equal "Unknown", entries.style.name
+  end
+
+
   def test_to_s_prints_details
     entries = Entries.new(name: "FooBeer", ounces: "20", cost: "10.00")
     expected = "FooBeer: 20 oz, $10.00, id: #{entries.id}"

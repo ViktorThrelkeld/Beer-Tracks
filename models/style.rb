@@ -2,6 +2,10 @@ class Style
   attr_accessor :name
   attr_reader :id
 
+  def self.default
+    @@default ||= Style.find_or_create("Unknown")
+  end
+
   def initialize(name)
     self.name = name
   end
@@ -24,8 +28,8 @@ class Style
   def self.find_or_create name
     database = Environment.database_connection
     database.results_as_hash = true
-    results = database.execute("select * from style where name = '#{name}'")
     style = Style.new(name)
+    results = database.execute("select * from style where name = '#{style.name}'")
 
     if results.empty?
       database.execute("insert into style(name) values('#{style.name}')")

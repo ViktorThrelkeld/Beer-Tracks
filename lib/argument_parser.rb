@@ -34,14 +34,14 @@ class ArgumentParser
   def self.validate options
     errors = []
     if options[:name].nil? or options[:name].empty?
-      errors << "You must provide the name of the beer you drank.\n"
+      errors << "You must provide the name of the beer you drank."
     end
 
     missing_things = []
     missing_things << "cost" unless options[:cost]
     missing_things << "total ounces" unless options[:ounces]
     unless missing_things.empty?
-      errors << "You must provide the #{missing_things.join(" and ")} of the beer you drank.\n"
+      errors << "You must provide the #{missing_things.join(" and ")} of the beer you drank."
     end
     errors
   end

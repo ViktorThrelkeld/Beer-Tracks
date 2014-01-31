@@ -4,6 +4,7 @@ class Entries
 
   def initialize attributes = {}
     update_attributes(attributes)
+    self.style ||= Style.default
   end
 
   def cost=(cost)

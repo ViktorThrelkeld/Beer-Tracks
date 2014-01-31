@@ -22,15 +22,7 @@ class BeerTracks
       search_term = ask("What do you want to search for?")
       search_entries_for(search_term)
     elsif options[:command] == "add"
-      error_messages = ArgumentParser.validate(options)
-      if error_messages.empty?
-        entry = Entries.new(options)
-        entry.save
-        puts "Congratulations! You drank #{options[:ounces]} oz of #{options[:name]}, costing you $#{options[:cost]}."
-        logo
-      else
-        puts error_messages
-      end
+      add_entry()
     elsif options[:command] == "list"
       list_entries()
     elsif options[:command] == "edit"
@@ -44,7 +36,7 @@ class BeerTracks
       puts "Command not implemented"
     end
   end
-end
+
 
   def list_entries()
     puts "All Entries:"
@@ -54,6 +46,34 @@ end
   def search_entries_for(search_term)
     puts "You asked for: #{search_term}"
     puts Entries.search(search_term)
+  end
+
+  def add_entry
+    error_messages = ArgumentParser.validate(options)
+    options[:style] = get_style()
+      if error_messages.empty?
+        entry = Entries.new(options)
+        entry.save
+        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}."
+        # logo
+      else
+        puts error_messages.join(" ")
+      end
+    end
+
+    def get_style
+      query = "Choose a style:"
+      style = Style.all
+      style.each_with_index do |style, i|
+        query<< "#{i+1}. #{style.name}"
+      end
+      style_number = ask(query)
+      if style_number.empty?
+        Style.default
+      else
+        style[style_number.to_i - 1]
+      end
+    end
   end
 
 beertracks = BeerTracks.new()
