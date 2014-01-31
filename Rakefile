@@ -11,6 +11,13 @@ end
 desc "Run tests"
 task :default => :test
 
+dec 'import data from the given file'
+task :import_data do
+  Environment.environment = "production"
+  require_relative 'lib/importer'
+  Importer.import("data/entries_import.csv")
+end
+
 desc 'create the production database setup'
 task :bootstrap_database do
   Environment.environment = "production"
