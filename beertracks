@@ -32,7 +32,13 @@ class BeerTracks
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
-
+    elsif options[:command]== "delete"
+      if entries = Entries.find(options[:id])
+        entries.delete(options)
+        puts "Entry #{entries.id} which was #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost has been deleted."
+      else
+        puts "Entry #{options[:id]} couldn't be found."
+      end
     elsif options[:command] == "total"
       total_cost = add_prices()
       total_calories = add_calories

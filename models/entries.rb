@@ -26,6 +26,11 @@ class Entries
     save
   end
 
+  def delete attribute
+    database = Environment.database_connection
+    database.execute("delete from entries where id = #{id}")
+  end
+
   def save
     database = Environment.database_connection
     style_id = style.nil? ? "NULL" : style.id
