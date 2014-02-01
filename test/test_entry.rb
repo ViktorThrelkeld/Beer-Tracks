@@ -55,15 +55,15 @@ class TestEntry < BeerTest
   end
 
   def test_save_saves_style_id
-    style = Style.find_or_create("Barley Wine")
+    style = Style.find_or_create(name: "Barley Wine")
     entries = Entries.create(name: "Foo", ounces: 6, cost: 5.00, style: style)
     style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
     assert_equal style.id, style_id, "Style.id and entries.style_id should be the same"
   end
 
   def test_save_update_style_id
-    style1 = Style.find_or_create("APA")
-    style2 = Style.find_or_create("Lager")
+    style1 = Style.find_or_create(name: "APA")
+    style2 = Style.find_or_create(name: "Lager")
     entries = Entries.create(name: "Foo", ounces: 20, cost: 5.50, style: style1)
     entries.style = style2
     entries.save

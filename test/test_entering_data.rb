@@ -3,9 +3,9 @@ require_relative 'helper'
 
 class TestEnteringData < BeerTest
   def test_user_is_presented_with_style_list
-    style1 = Style.find_or_create("Foo")
-    style2 = Style.find_or_create("Bar")
-    style3 = Style.find_or_create("IPA")
+    style1 = Style.find_or_create(name: "Foo")
+    style2 = Style.find_or_create(name: "Bar")
+    style3 = Style.find_or_create(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
@@ -19,9 +19,9 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_chooses_category
-    style1 = Style.find_or_create("Foo")
-    style2 = Style.find_or_create("Bar")
-    style3 = Style.find_or_create("IPA")
+    style1 = Style.find_or_create(name: "Foo")
+    style2 = Style.find_or_create(name: "Bar")
+    style3 = Style.find_or_create(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
@@ -31,7 +31,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_skips_entering_style
-    style3 = Style.find_or_create("IPA")
+    style3 = Style.find_or_create(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts ""

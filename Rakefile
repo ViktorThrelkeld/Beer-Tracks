@@ -2,6 +2,8 @@
 # -*- ruby -*-
 
 require_relative 'lib/environment'
+require_relative 'lib/importer'
+
 require 'rake/testtask'
 
 Rake::TestTask.new() do |t|
@@ -14,7 +16,7 @@ task :default => :test
 desc 'import data from the given file'
 task :import_data do
   Environment.environment = "production"
-  require_relative 'lib/importer'
+  Importer.import("data/style_import.csv")
   Importer.import("data/entries_import.csv")
 end
 

@@ -83,6 +83,11 @@ class Entries
      other.is_a?(Entries) && self.to_s == other.to_s
   end
 
+  def total_calories
+    total = ounces * style.calories_per_ounce
+    total
+  end
+
   protected
 
   def id=(id)
