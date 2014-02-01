@@ -83,7 +83,7 @@ class BeerTracks
         entry = Entries.new(options)
         entry.save
         puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}."
-        # logo
+        logo
       else
         puts error_messages.join(" ")
       end
@@ -93,7 +93,7 @@ class BeerTracks
       query = "Choose a style:"
       style = Style.all
       style.each_with_index do |style, i|
-        query<< "#{i+1}. #{style.name}"
+        query<< "\n#{i+1}. #{style.name}"
       end
       style_number = ask(query)
       if style_number.empty?
