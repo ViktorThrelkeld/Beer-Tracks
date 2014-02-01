@@ -32,11 +32,33 @@ class BeerTracks
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
+
+    elsif options[:command] == "total"
+      total_cost = add_prices()
+      total_calories = add_calories
+      puts "Your total cost was $#{total_cost} and your total calories was #{total_calories}"
     else
       puts "Command not implemented"
     end
   end
 
+  def add_prices()
+    entries = Entries.all
+    total = 0
+    entries.each do |entry|
+      total += entry.cost.to_f
+    end
+    total
+  end
+
+  def add_calories()
+    entries = Entries.all
+    total = 0
+    entries.each do |entry|
+      total += (entry.ounces.to_i * entry.style.calories_per_ounce.to_i)
+    end
+    total
+  end
 
   def list_entries()
     puts "All Entries:"

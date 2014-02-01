@@ -2,6 +2,8 @@
 # -*- ruby -*-
 
 require_relative 'lib/environment'
+require_relative 'lib/importer'
+
 require 'rake/testtask'
 
 Rake::TestTask.new() do |t|
@@ -14,7 +16,7 @@ task :default => :test
 desc 'import data from the given file'
 task :import_data do
   Environment.environment = "production"
-  require_relative 'lib/importer'
+  Importer.import("data/style_import.csv")
   Importer.import("data/entries_import.csv")
 end
 
@@ -35,5 +37,5 @@ end
 
 def create_tables(database_connection)
   database_connection.execute("CREATE TABLE entries (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), ounces integer, cost decimal(5,2), style_id integer)")
-  database_connection.execute("CREATE TABLE style (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50))")#^ change style to style_id, add abv and cals to this table
+  database_connection.execute("CREATE TABLE style (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), abv decimal(5,2), calories_per_ounce integer)")#^ change style to style_id, add abv and cals to this table
 end
