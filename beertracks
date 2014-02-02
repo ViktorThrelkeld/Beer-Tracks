@@ -41,6 +41,7 @@ class BeerTracks
       end
     elsif options[:command] == "total"
       total_cost = add_prices()
+      total_cost = sprintf('%.2f', total_cost)
       total_calories = add_calories
       puts "Your total cost was $#{total_cost} and your total calories was #{total_calories}"
     else
