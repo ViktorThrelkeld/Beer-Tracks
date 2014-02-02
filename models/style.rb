@@ -1,10 +1,9 @@
-require 'pry'
 class Style
   attr_accessor :name, :abv, :calories_per_ounce
   attr_reader :id
 
   def self.default
-    @@default ||= Style.find_or_create(name: "Unknown")
+    @@default ||= Style.find_or_create(name: "Unknown", calories_per_ounce: 12)
   end
 
   def initialize attributes = {}

@@ -42,7 +42,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_valid_drinking_information_gets_printed
-    skip #righteous beer art. need to do a assert in
+    skip #righteous beer art. need to do a assert includes
     command = "./beertracks add 'Yazoo Pale' --ounces 40 --cost 10"
     expected = "Congratulations! You drank 40 oz of Yazoo Pale (Unknown), costing you $10.00."
     assert_command_output expected, command

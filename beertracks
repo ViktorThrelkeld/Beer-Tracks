@@ -43,7 +43,17 @@ class BeerTracks
       total_cost = add_prices()
       total_cost = sprintf('%.2f', total_cost)
       total_calories = add_calories
-      puts "Your total cost was $#{total_cost} and your total calories was #{total_calories}"
+      puts "You are $#{total_cost} poorer and #{total_calories} calories fatter."
+      if total_cost.to_f > 100.00 && total_calories.to_f > 10000.00
+        puts "You are on your way to being a homeless fatass drunk."
+      else
+        if total_cost.to_f > 100.00
+          puts "You are on your way to being a homeless drunk."
+        end
+        if total_calories.to_f > 10000.00
+          puts "You are a fatass drunk."
+        end
+      end
     else
       puts "Command not implemented"
     end
