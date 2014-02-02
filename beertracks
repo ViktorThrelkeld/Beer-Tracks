@@ -54,6 +54,10 @@ class BeerTracks
           puts "You are a fatass drunk."
         end
       end
+    elsif options[:command] == "menu"
+      logo
+      puts "Welcome to the BeerTracks menu.\nAdd Beer:\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\n\nSearch specific beer:\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList your journal entries:\n./beertracks list\n\nEdit an entry:\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\nEdit:\n./beertracks edit --id(put id here) follow this by what you want to edit (ex. --ounces 40).\n\nTotal:\n./beertracks total\nThis prints out the total money spent and calories based on the style of beer consumed."
+
     else
       puts "Command not implemented"
     end
