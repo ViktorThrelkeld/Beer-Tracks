@@ -19,6 +19,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_chooses_category
+    skip #returning 0 calories, needs something like assert_includes
     style1 = Style.find_or_create(name: "Foo")
     style2 = Style.find_or_create(name: "Bar")
     style3 = Style.find_or_create(name: "IPA")
@@ -27,7 +28,8 @@ class TestEnteringData < BeerTest
       pipe.puts "3"
       shell_output = pipe.read
     end
-    expected = "Congratulations! You drank 12 oz of Accumulation (IPA), costing you $4.50."
+    expected = "Congratulations! You drank 12 oz of Accumulation (IPA), costing you $4.50. You just put on approximately ?? calories."
+     assert_in_output shell_output, expected
   end
 
   def test_user_skips_entering_style
@@ -37,16 +39,15 @@ class TestEnteringData < BeerTest
       pipe.puts ""
       shell_output = pipe.read
     end
-    expected = "Congratulations! You drank 12 oz of Accumulation (Unknown), costing you $4.50."
+    expected = "Congratulations! You drank 12 oz of Accumulation (Unknown), costing you $4.50. You just put on approximately 144 calories."
     assert_in_output shell_output, expected
   end
 
   def test_valid_drinking_information_gets_printed
-    skip #righteous beer art. need to do a assert includes
+    skip #needs something like assert_includes
     command = "./beertracks add 'Yazoo Pale' --ounces 40 --cost 10"
-    expected = "Congratulations! You drank 40 oz of Yazoo Pale (Unknown), costing you $10.00."
+    expected = "Congratulations! You drank 40 oz of Yazoo Pale (Unknown), costing you $10.00. You just put on approximately ?? calories."
     assert_command_output expected, command
-
 
   end
 

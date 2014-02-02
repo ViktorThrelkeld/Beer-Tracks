@@ -57,7 +57,6 @@ class BeerTracks
     elsif options[:command] == "menu"
       logo
       puts "Welcome to the BeerTracks menu.\nAdd Beer:\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\n\nSearch specific beer:\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList your journal entries:\n./beertracks list\n\nEdit an entry:\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\nEdit:\n./beertracks edit --id(put id here) follow this by what you want to edit (ex. --ounces 40).\n\nTotal:\n./beertracks total\nThis prints out the total money spent and calories based on the style of beer consumed."
-
     else
       puts "Command not implemented"
     end
@@ -97,11 +96,18 @@ class BeerTracks
       if error_messages.empty?
         entry = Entries.new(options)
         entry.save
-        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}."
+        this_entry_calories = entry_calories()
+        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}. You just put on approximately #{this_entry_calories} calories."
         logo
       else
         puts error_messages.join(" ")
       end
+    end
+
+    def entry_calories
+      entry = Entries.new(options)
+      total =entry.ounces.to_i * entry.style.calories_per_ounce.to_i
+      total
     end
 
     def get_style
