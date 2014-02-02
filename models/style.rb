@@ -1,10 +1,9 @@
-require 'pry'
 class Style
   attr_accessor :name, :abv, :calories_per_ounce
   attr_reader :id
 
   def self.default
-    @@default ||= Style.find_or_create(name: "Unknown")
+    @@default ||= Style.find_or_create(name: "Unknown", calories_per_ounce: 12)
   end
 
   def initialize attributes = {}
@@ -32,7 +31,7 @@ class Style
     style = Style.new(attributes)
     results = database.execute("select * from style where name = '#{style.name}'")
     if results.empty?
-      database.execute("insert into style(name, abv, calories_per_ounce) values('#{style.name}', #{attributes[:abv].to_f}, #{attributes[:calories_per_ounce].to_i})")
+      database.execute("insert into style(name, abv, calories_per_ounce) values('#{style.name}', #{attributes[:abv].to_f}, #{attributes[:calories_per_ounce].to_f})")
       style.send("id=", database.last_insert_row_id)
     else
       row_hash = results[0]

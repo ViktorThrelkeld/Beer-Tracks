@@ -1,5 +1,21 @@
 abv,calories_per_ounce,style
-5,12.5,stout
-4.5,11.25,pilsner
-6,15,porter
+5,12.5,Stout
+4.5,11.25,Pilsener
+6,15,Porter
 7,17.5,IPA
+4.7,11.75,Brown Ale
+5.2,13,Red Ale
+4.4,11,Bock
+9.5,23.75,Double Bock
+17.5,43.75,Triple Bock
+10.5,26.25, Imperial Stout
+6.5,16.25,APA
+5.6,14,Wheat
+10,25,Imperial IPA
+5.6,14,Malt Liquor
+5,15,Cream Ale
+5,15,Lager
+.5,1.25,Non-Alchoholic
+5,25,Rice Lager
+5.9,14.75,Oktoberfest
+7.7,19.25,Saison

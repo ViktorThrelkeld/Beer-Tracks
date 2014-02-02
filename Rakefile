@@ -37,5 +37,5 @@ end
 
 def create_tables(database_connection)
   database_connection.execute("CREATE TABLE entries (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), ounces integer, cost decimal(5,2), style_id integer)")
-  database_connection.execute("CREATE TABLE style (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), abv decimal(5,2), calories_per_ounce integer)")#^ change style to style_id, add abv and cals to this table
+  database_connection.execute("CREATE TABLE style (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(50), abv decimal(5,2), calories_per_ounce decimal(5,2))")
 end

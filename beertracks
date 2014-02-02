@@ -32,11 +32,28 @@ class BeerTracks
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
-
+    elsif options[:command]== "delete"
+      if entries = Entries.find(options[:id])
+        entries.delete(options)
+        puts "Entry #{entries.id} which was #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost has been deleted."
+      else
+        puts "Entry #{options[:id]} couldn't be found."
+      end
     elsif options[:command] == "total"
       total_cost = add_prices()
+      total_cost = sprintf('%.2f', total_cost)
       total_calories = add_calories
-      puts "Your total cost was $#{total_cost} and your total calories was #{total_calories}"
+      puts "You are $#{total_cost} poorer and #{total_calories} calories fatter."
+      if total_cost.to_f > 100.00 && total_calories.to_f > 10000.00
+        puts "You are on your way to being a homeless fatass drunk."
+      else
+        if total_cost.to_f > 100.00
+          puts "You are on your way to being a homeless drunk."
+        end
+        if total_calories.to_f > 10000.00
+          puts "You are a fatass drunk."
+        end
+      end
     else
       puts "Command not implemented"
     end
@@ -77,7 +94,7 @@ class BeerTracks
         entry = Entries.new(options)
         entry.save
         puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}."
-        # logo
+        logo
       else
         puts error_messages.join(" ")
       end
@@ -87,7 +104,7 @@ class BeerTracks
       query = "Choose a style:"
       style = Style.all
       style.each_with_index do |style, i|
-        query<< "#{i+1}. #{style.name}"
+        query<< "\n#{i+1}. #{style.name}"
       end
       style_number = ask(query)
       if style_number.empty?
