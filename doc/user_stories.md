@@ -96,7 +96,7 @@
 </pre>
 ***
 
-####List Calories Consumed
+####List Total Calories Consumed
 <pre>
   As a healthy person,
   In order to keep a leash on my weight,
@@ -109,7 +109,7 @@
 </pre>
 ***
 
-####List Money Spent
+####List Total Money Spent
 <pre>
   As a frugal husband,
   In order to stay within the bounds of a set budget,
