@@ -9,6 +9,7 @@
   I want to be able to create an entry.
 
   *Usage: ./beertracks add "beer_name" ounces cost
+  *Example: ./beertracks Heineken --ounces 12 --cost 4.50
 
   Acceptance Criteria:
   *I can create a data entry.
@@ -25,7 +26,8 @@
     In order to keep accurate records,
     I want to be able to edit data
 
-    *Usage: ./beertracks edit --id 12  --ounces (updated_ounces)
+    *Usage: ./beertracks edit --id (id_to_edit)  --ounces (updated_ounces)
+    *Example ./beertracks edit --id 12 --ounces 6
 
     Acceptance Criteria:
     *I can update oz by typing edit command and setting oz.
@@ -40,7 +42,7 @@
     I want to be able to update cost.
  
     *Usage: ruby beer.rb update oz "beer_name" --id (id) --cost (updated_cost)
-    *example: ./beertracks update --id 12 --cost 4.50
+    *Example: ./beertracks update --id 12 --cost 4.50
 
     Acceptance Criteria:
     *I can update cost by typing edit command and setting cost.
@@ -54,8 +56,9 @@
     In order to keep accurate records,
     I want to be able to delete data.
 
-     *Usage: ruby beer.rb delete --id (id_of_entry_to_be_deleted)
-
+     *Usage: ./beertracks delete --id (id_of_entry_to_be_deleted)
+     *Example: ./beertracks delete --id 12
+     
     Acceptance Criteria:
     *I can delete a record by typing delete command.
     *Confirms deletion
