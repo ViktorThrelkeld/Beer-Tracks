@@ -19,7 +19,7 @@ class BeerTracks
     database = Environment.database_connection
 
     if options[:command] == "search"
-      search_term = ask("What do you want to search for?")
+      search_term = ask("What beer (by name) do you want to search for?")
       search_entries_for(search_term)
     elsif options[:command] == "add"
       add_entry()
