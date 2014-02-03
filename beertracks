@@ -68,17 +68,20 @@ class BeerTracks
     entries = Entries.all
     total_add = 0
     total_cost = 0
+    total_ounces = 0
     entries.each do |entry|
       total_add += entry.style.abv.to_f
       total_cost += entry.cost.to_f
+      total_ounces += entry.ounces.to_i
     end
     average_abv = total_add / entries.count
     average_abv = sprintf('%.1f', average_abv)
-    average_cost = total_cost / entries.count
-    average_cost = sprintf('%.2f', average_cost)
+    num_of_twelve_ounce_beers = total_ounces / 12
+    average_cost_per_twelve_ounce_beer = total_cost / num_of_twelve_ounce_beers
+    average_cost_per_twelve_ounce_beer = sprintf('%.2f', average_cost_per_twelve_ounce_beer)
 
     puts "#{average_abv}% is your average abv per beer."
-    puts "$#{average_cost} is your average cost per beer."
+    puts "$#{average_cost_per_twelve_ounce_beer} is your average cost per 12 oz. of beer."
 
 
   end
