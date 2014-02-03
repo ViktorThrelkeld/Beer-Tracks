@@ -43,7 +43,7 @@ class BeerTracks
       total_cost = add_prices()
       total_cost = sprintf('%.2f', total_cost)
       total_calories = add_calories
-      puts "You are $#{total_cost} poorer and #{total_calories} calories fatter."
+      puts "You are $#{total_cost} poorer and #{total_calories} calories fatter. You should drink more water."
       if total_cost.to_f > 100.00 && total_calories.to_f > 10000.00
         puts "You are on your way to being a homeless fatass drunk."
       else
@@ -58,7 +58,7 @@ class BeerTracks
       average()
     elsif options[:command] == "menu"
       logo
-      puts "Welcome to the BeerTracks menu.\nAdd Beer:\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\n\nSearch specific beer:\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList your journal entries:\n./beertracks list\n\nEdit an entry:\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\nEdit:\n./beertracks edit --id(put id here) follow this by what you want to edit (ex. --ounces 40).\n\nTotal:\n./beertracks total\nThis prints out the total money spent and calories based on the style of beer consumed."
+      puts "Welcome to the BeerTracks menu.\nAdd Beer:\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\n\nSearch specific beer:\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList your journal entries:\n./beertracks list\n\nEdit an entry:\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\nEdit:\n./beertracks edit --id(put id here) follow this by what you want to edit (ex. --ounces 40).\n\nTotal:\n./beertracks total\nThis prints out the total money spent and calories based on the style of beer consumed.\n\nAverage:\n./beertracks average\nThis prints out the average abv and the average cost per 12 .oz beer."
     else
       puts "Command not implemented"
     end
@@ -66,22 +66,27 @@ class BeerTracks
 
   def average()
     entries = Entries.all
-    total_add = 0
+    total_abv = 0
     total_cost = 0
     total_ounces = 0
+    total_calories = 0
     entries.each do |entry|
-      total_add += entry.style.abv.to_f
+      total_abv += entry.style.abv.to_f
       total_cost += entry.cost.to_f
       total_ounces += entry.ounces.to_i
+      total_calories += (entry.ounces.to_i * entry.style.calories_per_ounce.to_i)
     end
-    average_abv = total_add / entries.count
+    average_abv = total_abv / entries.count
     average_abv = sprintf('%.1f', average_abv)
+
     num_of_twelve_ounce_beers = total_ounces / 12
     average_cost_per_twelve_ounce_beer = total_cost / num_of_twelve_ounce_beers
     average_cost_per_twelve_ounce_beer = sprintf('%.2f', average_cost_per_twelve_ounce_beer)
 
-    puts "#{average_abv}% is your average abv per beer."
-    puts "$#{average_cost_per_twelve_ounce_beer} is your average cost per 12 oz. of beer."
+    average_calories_per_twelve_ounce_beer = total_calories / num_of_twelve_ounce_beers
+
+
+    puts "Your average beer costs you $#{average_cost_per_twelve_ounce_beer}, adds #{average_calories_per_twelve_ounce_beer} calories to your diet, and has an abv of #{average_abv}%."
 
 
   end

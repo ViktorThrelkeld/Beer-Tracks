@@ -10,7 +10,7 @@ class TestTotals < BeerTest
       pipe.close_write
       shell_output = pipe.read
     end
-    assert_in_output shell_output, "You are $20.00 poorer and 340 calories fatter."
+    assert_in_output shell_output, "You are $20.00 poorer and 340 calories fatter. You should drink more water."
   end
   def test_totals_of_cost_greater_than_100
     style1 = Style.find_or_create(name: "porter", calories_per_ounce: 8)
@@ -22,7 +22,7 @@ class TestTotals < BeerTest
       pipe.close_write
       shell_output = pipe.read
     end
-    assert_includes shell_output, "You are $112.00 poorer and 340 calories fatter.\nYou are on your way to being a homeless drunk."
+    assert_includes shell_output, "You are $112.00 poorer and 340 calories fatter. You should drink more water.\nYou are on your way to being a homeless drunk."
   end
 
   def test_totals_of_calories_greater_than_10000
@@ -36,7 +36,7 @@ class TestTotals < BeerTest
       pipe.close_write
       shell_output = pipe.read
     end
-    assert_includes shell_output, "You are $22.00 poorer and 10020 calories fatter.\nYou are a fatass drunk."
+    assert_includes shell_output, "You are $22.00 poorer and 10020 calories fatter. You should drink more water.\nYou are a fatass drunk."
   end
 
   def test_totals_of_cost_greater_than_100_calories_greater_than_10000
@@ -50,7 +50,7 @@ class TestTotals < BeerTest
       pipe.close_write
       shell_output = pipe.read
     end
-    assert_includes shell_output, "You are $112.00 poorer and 10020 calories fatter.\nYou are on your way to being a homeless fatass drunk."
+    assert_includes shell_output, "You are $112.00 poorer and 10020 calories fatter. You should drink more water.\nYou are on your way to being a homeless fatass drunk."
   end
 
 
