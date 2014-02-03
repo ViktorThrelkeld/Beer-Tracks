@@ -13,6 +13,9 @@
   Acceptance Criteria:
   *I can create a data entry.
   *I cannot make an entry without all fields filled in.
+  *After entering data manually, the user is prompted as to what style of beer they entered.
+  *If no style is selected and the user hits enter, Unknown is selected by default with an average calorie per ounce of 12.
+  *Prints entry.
 </pre>
 ***
 
