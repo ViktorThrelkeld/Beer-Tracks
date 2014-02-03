@@ -96,6 +96,8 @@
 </pre>
 ***
 
+###Totals
+
 ####List Total Calories Consumed
 <pre>
   As a healthy person,
@@ -121,6 +123,8 @@
   *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
+
+###Averages
 
 ####List Average Cost per beer
 <pre>
@@ -148,7 +152,7 @@
 </pre>
 ***
 
-####List Average abv per beer
+####List Average ABV per beer
 <pre>
   As a frequent drinker,
   In order to see a pattern in my abv intake,
