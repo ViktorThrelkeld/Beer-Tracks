@@ -8,11 +8,15 @@
   In order to add information about beer consumed,
   I want to be able to create an entry.
 
-  *Usage: ruby beer.rb add "persons_name" "style" "beer_name" date num_oz num_dollars
+  *Usage: ./beertracks add "beer_name" ounces cost
+  *Example: ./beertracks Heineken --ounces 12 --cost 4.50
 
   Acceptance Criteria:
   *I can create a data entry.
   *I cannot make an entry without all fields filled in.
+  *After entering data manually, the user is prompted as to what style of beer they entered.
+  *If no style is selected and the user hits enter, Unknown is selected by default with an average calorie per ounce of 12.
+  *Prints entry.
 </pre>
 ***
 
@@ -20,13 +24,13 @@
 <pre>
     As a person who may have entered in the wrong data,
     In order to keep accurate records,
-    I want to be able to update oz.
+    I want to be able to edit data
 
-    *Usage: ruby beer.rb update "person_name" "beer_name" date num_oz
-    *example: ruby beer.rb update "Brian" "Yazoo Pale Ale" 1-14-14 20
+    *Usage: ./beertracks edit --id (id_to_edit)  --ounces (updated_ounces)
+    *Example ./beertracks edit --id 12 --ounces 6
 
     Acceptance Criteria:
-    *I can update oz by typing update command and setting oz.
+    *I can update oz by typing edit command and setting oz.
     *Prints updated record.
 </pre>
 ***
@@ -36,12 +40,12 @@
     As a person who may have entered in the wrong data,
     In order to keep accurate records,
     I want to be able to update cost.
-
-    *Usage: ruby beer.rb update oz "person_name" "beer_name" date num_dollars
-    *example: ruby beer.rb update "Brian" "Yazoo Pale Ale" 1-14-14 15
+ 
+    *Usage: ruby beer.rb update oz "beer_name" --id (id) --cost (updated_cost)
+    *Example: ./beertracks update --id 12 --cost 4.50
 
     Acceptance Criteria:
-    *I can update cost by typing update command and setting cost.
+    *I can update cost by typing edit command and setting cost.
     *Prints updated record.
 </pre>
 ***
@@ -52,8 +56,9 @@
     In order to keep accurate records,
     I want to be able to delete data.
 
-     *Usage: ruby beer.rb delete "person_name" "beer_name" "date"
-
+     *Usage: ./beertracks delete --id (id_of_entry_to_be_deleted)
+     *Example: ./beertracks delete --id 12
+     
     Acceptance Criteria:
     *I can delete a record by typing delete command.
     *Confirms deletion
@@ -68,23 +73,10 @@
   In order to remember what different beers I have enjoyed,
   I want to track the different kinds of beer I drink.
 
-   *Usage: ruby beer.rb kinds
+   *Usage: ./beertracks list
 
   Acceptance Criteria:
   *Prints out the different kinds of beer consumed.
-</pre>
-***
-
-####List Oz. of Beer Consumed
-<pre>
-  As a healthy person,
-  In order to keep a leash on my compulsive tendencies,
-  I want to track the oz of beer I drink.
-
-  *Usage: ruby beer.rb oz
-
-  Acceptance Criteria:
-  *Prints out the total amount of beer consumed in ounces.
 </pre>
 ***
 
@@ -94,10 +86,10 @@
   In order to keep a leash on my weight,
   I want to track the amount of calories in the beer I drink.
 
-  *Usage: ruby beer.rb cal
+  *Usage: ./beertracks total
 
   Acceptance Criteria:
-  *Prints out approximate calories consumed.
+  *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
 
@@ -107,33 +99,9 @@
   In order to stay within the bounds of a set budget,
   I want to track the amount of money I spend on beer.
 
-  *Usage: ruby beer.rb money
+  *Usage: ./beertracks total
 
   Acceptance Criteria:
-  *Prints out the total amount of money spent.
+  *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
-
-####List Money Spent Per ABV
-<pre>
-  As a drinker who wants the most amount of alcohol for the buck,
-  In order to see how much actual alcohol I consume for my money,
-  I want to see how much i am spending on the percentage of alcohol in the beer.
-
-  *Usage: ruby beer.rb abv
-
-  Acceptance Criteria:
-  *Prints out the amount of mony spent per ABV.
-</pre>
-***
-
-
-
-
-
-
-
-
-
-
-./beertracks add 'Green Man' --oz 12 --cost 5 --style IPA
