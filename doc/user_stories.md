@@ -83,7 +83,7 @@
   *Usage: ./beertracks total
 
   Acceptance Criteria:
-  *Prints out approximate calories consumed, as well as total cost.
+  *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
 
@@ -96,19 +96,6 @@
   *Usage: ./beertracks total
 
   Acceptance Criteria:
-  *Prints out approximate calories consumed, as well as total cost.
+  *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
-
-
-
-
-
-
-
-
-
-
-
-
-./beertracks add 'Green Man' --oz 12 --cost 5 --style IPA
