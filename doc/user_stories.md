@@ -67,6 +67,22 @@
 
 ##Query Data
 
+####Search Data
+<pre>
+    As a person who may want to see the entries of a specific beer by name,
+    In order to keep track of that brand of beer,
+    I want to be able to search the entries.
+
+     *Usage: ./beertracks search 
+     
+     
+    Acceptance Criteria:
+    *I can search a entries for a specific beer by name.
+    *After using the search command I will be prompted for its name.
+    *Lists entries of beer by that name as well as id.
+</pre>
+***
+
 ####List Kinds of Beer Consumed
 <pre>
   As a beer connoisseur,
