@@ -121,3 +121,42 @@
   *Prints out approximate calories consumed based on the style of beer, as well as total cost.
 </pre>
 ***
+
+####List Average Cost per beer
+<pre>
+  As a frequent drinker,
+  In order to see a pattern in my spending,
+  I want to see my average cost per beer.
+
+  *Usage: ./beertracks total
+
+  Acceptance Criteria:
+  *Prints out average cost per 12 ounce beer.
+</pre>
+***
+
+####List Average Calories per beer
+<pre>
+  As a frequent drinker,
+  In order to see a pattern in my caloric intake,
+  I want to see my average calories per beer.
+
+  *Usage: ./beertracks total
+
+  Acceptance Criteria:
+  *Prints out average calories per 12 ounce beer.
+</pre>
+***
+
+####List Average abv per beer
+<pre>
+  As a frequent drinker,
+  In order to see a pattern in my abv intake,
+  I want to see my average abv per beer.
+
+  *Usage: ./beertracks total
+
+  Acceptance Criteria:
+  *Prints out average abv per beer.
+</pre>
+***
