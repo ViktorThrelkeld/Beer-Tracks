@@ -71,7 +71,7 @@ class BeerTracks
     total_ounces = 0
     total_calories = 0
     entries.each do |entry|
-      total_abv += entry.style.abv.to_f #* entry.ounces.to_i
+      total_abv += entry.style.abv.to_f * entry.ounces.to_i
       total_cost += entry.cost.to_f
       total_ounces += entry.ounces.to_i
       total_calories += (entry.ounces.to_i * entry.style.calories_per_ounce.to_i)
@@ -81,7 +81,7 @@ class BeerTracks
     average_cost_per_twelve_ounce_beer = total_cost / num_of_twelve_ounce_beers
     average_cost_per_twelve_ounce_beer = sprintf('%.2f', average_cost_per_twelve_ounce_beer)
 
-    average_abv = total_abv / entries.count
+    average_abv = total_abv / total_ounces
     average_abv = sprintf('%.1f', average_abv)
 
     average_calories_per_twelve_ounce_beer = total_calories / num_of_twelve_ounce_beers
