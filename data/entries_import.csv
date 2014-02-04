@@ -1,7 +1,13 @@
 beer_name,ounces,cost,style
-Guinness,20,10,Stout
+Guinness Draught,20,10,Stout
 Bush,25,2.70,Pilsner
 Yazoo Pale Ale,16,5.50,IPA
 Founders Porter,72,10.50,Porter
 Steel Reserve,72,6,Lager
 Yazoo Pale Ale,80,30,IPA
+Samuel Smith Oatmeal Stout,18,5,Stout
+Red Stripe,20,5.50,Lager
+Yazoo Dos Perros,16,4.50,Brown Ale
+Guinness Stout,16,5.50,Stout
+New Belgium Ranger,72,11.75 11.50,IPA
+New Belgium Rampant,72,12.50,Imperial IPA
