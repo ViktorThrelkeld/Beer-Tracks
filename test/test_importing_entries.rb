@@ -14,9 +14,9 @@ class TestImportingEntries < BeerTest
   def test_entries_are_imported_fully
     import_data
     expected = [
-    "Anchor Steam, 12, 4.50, porter",
-    "Bush, 25, 2.70, pilsner",
-    "Guinness, 20, 10.00, stout",
+    "Anchor Steam, 12, 4.50, Porter",
+    "Bush, 25, 2.70, Pilsner",
+    "Guinness, 20, 10.00, Stout",
     "Yazoo Pale Ale, 16, 5.50, IPA"
     ]
     actual = Entries.all.map do |beer|
