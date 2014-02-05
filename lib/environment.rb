@@ -1,5 +1,5 @@
 require 'rubygems'
-# require 'bundler/setup'
+require 'bundler/setup'
 require 'active_record'
 
 project_root = File.dirname(File.absolute_path(__FILE__))

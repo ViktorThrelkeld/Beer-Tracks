@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'highline/import'
+
 require_relative 'lib/environment'
 require_relative 'lib/argument_parser'
 require_relative 'lib/interactions'
