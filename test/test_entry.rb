@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../models/entries'
+
 
 class TestEntry < BeerTest
   def test_style_defaults_to_unknown

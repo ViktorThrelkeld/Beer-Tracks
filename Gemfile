@@ -3,6 +3,4 @@ ruby "2.0.0"
 source 'https://rubygems.org'
 
 gem 'sqlite3'
-gem 'chronic'
-gem 'highline'
-gem 'pry'
+gem 'activerecord'

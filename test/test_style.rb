@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../models/style'
+
 
 class TestStyle < BeerTest
   def test_style_are_created_if_needed
