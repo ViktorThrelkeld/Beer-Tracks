@@ -1,8 +1,8 @@
 require_relative 'helper'
 class TestAverage < BeerTest
   def test_average_of_price_calories_abv
-    style1 = Style.find_or_create(name: "porter", abv: 4.5, calories_per_ounce: 8)
-    style2 = Style.find_or_create(name: "IPA", abv: 6, calories_per_ounce: 15)
+    style1 = Style.find_or_create_by(name: "porter", abv: 4.5, calories_per_ounce: 8)
+    style2 = Style.find_or_create_by(name: "IPA", abv: 6, calories_per_ounce: 15)
     Entries.create(name: "YazooPale", ounces: 20, cost: 7, style: style1)
     Entries.create(name: "Guiness", ounces: 12, cost: 5, style: style2)
     shell_output = ""
@@ -14,8 +14,8 @@ class TestAverage < BeerTest
   end
 
   def test_average_of_price_calories_abv_II
-    style1 = Style.find_or_create(name: "porter", abv: 6.5, calories_per_ounce: 8)
-    style2 = Style.find_or_create(name: "IPA", abv: 3.5, calories_per_ounce: 15)
+    style1 = Style.find_or_create_by(name: "porter", abv: 6.5, calories_per_ounce: 8)
+    style2 = Style.find_or_create_by(name: "IPA", abv: 3.5, calories_per_ounce: 15)
     Entries.create(name: "YazooPale", ounces: 12, cost: 7, style: style1)
     Entries.create(name: "Guiness", ounces: 72, cost: 5, style: style2)
     shell_output = ""

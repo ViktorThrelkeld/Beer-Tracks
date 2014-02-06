@@ -1,8 +1,8 @@
 require_relative 'helper'
 class TestTotals < BeerTest
   def test_totals_of_price_and_calories
-    style1 = Style.find_or_create(name: "porter", calories_per_ounce: 8)
-    style2 = Style.find_or_create(name: "IPA", calories_per_ounce: 15)
+    style1 = Style.find_or_create_by(name: "porter", calories_per_ounce: 8)
+    style2 = Style.find_or_create_by(name: "IPA", calories_per_ounce: 15)
     Entries.create(name: "YazooPale", ounces: 20, cost: 8, style: style1)
     Entries.create(name: "Guiness", ounces: 12, cost: 12, style: style2)
     shell_output = ""
@@ -13,8 +13,8 @@ class TestTotals < BeerTest
     assert_in_output shell_output, "You are $20.00 poorer and 340 calories fatter. You should drink more water."
   end
   def test_totals_of_cost_greater_than_100
-    style1 = Style.find_or_create(name: "porter", calories_per_ounce: 8)
-    style2 = Style.find_or_create(name: "IPA", calories_per_ounce: 15)
+    style1 = Style.find_or_create_by(name: "porter", calories_per_ounce: 8)
+    style2 = Style.find_or_create_by(name: "IPA", calories_per_ounce: 15)
     Entries.create(name: "YazooPale", ounces: 20, cost: 100, style: style1)
     Entries.create(name: "Guiness", ounces: 12, cost: 12, style: style2)
     shell_output = ""
@@ -26,8 +26,8 @@ class TestTotals < BeerTest
   end
 
   def test_totals_of_calories_greater_than_10000
-    style1 = Style.find_or_create(name: "porter", calories_per_ounce: 1)
-    style2 = Style.find_or_create(name: "IPA", calories_per_ounce: 10000)
+    style1 = Style.find_or_create_by(name: "porter", calories_per_ounce: 1)
+    style2 = Style.find_or_create_by(name: "IPA", calories_per_ounce: 10000)
     Entries.create(name: "YazooPale", ounces: 20, cost: 10, style: style1)
     Entries.create(name: "Guiness", ounces: 1, cost: 12, style: style2)
 
@@ -40,8 +40,8 @@ class TestTotals < BeerTest
   end
 
   def test_totals_of_cost_greater_than_100_calories_greater_than_10000
-    style1 = Style.find_or_create(name: "porter", calories_per_ounce: 1)
-    style2 = Style.find_or_create(name: "IPA", calories_per_ounce: 10000)
+    style1 = Style.find_or_create_by(name: "porter", calories_per_ounce: 1)
+    style2 = Style.find_or_create_by(name: "IPA", calories_per_ounce: 10000)
     Entries.create(name: "YazooPale", ounces: 20, cost: 100, style: style1)
     Entries.create(name: "Guiness", ounces: 1, cost: 12, style: style2)
 

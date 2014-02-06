@@ -1,7 +1,7 @@
 require_relative 'helper'
 
 
-class TestSearchingPurchases < BeerTest
+class TestSearchingEntries < BeerTest
   def test_search_returns_relevant_results
     Entries.create(name: "YazooPale", ounces: 20, cost: 8)
     Entries.create(name: "Guiness", ounces: 12, cost: 12)
