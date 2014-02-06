@@ -31,7 +31,7 @@ class TestEditingEntries < BeerTest
     entries = Entries.new(name: "Guinness", ounces: 12, cost: 5.50)
     entries.save
     id = entries.id #<--- First thing we have to implement
-    command = "./beertracks edit --id #{id} --name Guiness --ounces 12 --cost fifty"
+    command = "./beertracks edit --id #{id} --name Guinness --ounces 12 --cost fifty"
     expected = "Purchase #{id} can't be updated.  Price must be a number."
     assert_command_output expected, command
   end

@@ -26,23 +26,23 @@ class TestImportingEntries < BeerTest
   end
 
   def test_extra_categories_arent_created
-    skip
+
     import_data
     assert_equal 4, Style.all.count
   end
 
   def test_categories_are_created_as_needed
-    skip
-    Style.find_or_create(name: "stout")
+
+    Style.find_or_create(name: "Stout")
     Style.find_or_create(name: "Pets")
     import_data
-    assert_equal 4, Style.all.count, "The categories were: #{Style.all.map(&:name)}"
+    assert_equal 5, Style.all.count, "The categories were: #{Style.all.map(&:name)}"
   end
 
   def test_data_isnt_duplicated
-    skip
+
     import_data
-    expected = ["stout", "pilsner", "porter", "IPA"]
+    expected = ["Stout", "Pilsner", "Porter", "IPA"].sort
     assert_equal expected, Style.all.map(&:name)
   end
 end

@@ -19,16 +19,15 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_chooses_category
-    skip #returning 0 calories, needs something like assert_includes
     style1 = Style.find_or_create(name: "Foo")
     style2 = Style.find_or_create(name: "Bar")
-    style3 = Style.find_or_create(name: "IPA")
+    style3 = Style.find_or_create(name: "IPA", calories_per_ounce: 17.5)
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
       shell_output = pipe.read
     end
-    expected = "Congratulations! You drank 12 oz of Accumulation (IPA), costing you $4.50. You just put on approximately ?? calories."
+    expected = "Congratulations! You drank 12 oz of Accumulation (IPA), costing you $4.50. You just put on approximately 204 calories."
      assert_in_output shell_output, expected
   end
 
@@ -44,11 +43,14 @@ class TestEnteringData < BeerTest
   end
 
   def test_valid_drinking_information_gets_printed
-    skip #needs something like assert_includes
-    command = "./beertracks add 'Yazoo Pale' --ounces 40 --cost 10"
-    expected = "Congratulations! You drank 40 oz of Yazoo Pale (Unknown), costing you $10.00. You just put on approximately 0 calories."
-    assert_command_output expected, command
-
+    shell_output = ""
+    IO.popen("./beertracks add 'Yazoo Pale' --ounces 40 --cost 10", 'r+') do |pipe|
+      pipe.puts ""
+      pipe.close_write
+      shell_output = pipe.read
+    end
+    expected = "Congratulations! You drank 40 oz of Yazoo Pale (Unknown), costing you $10.00. You just put on approximately 480 calories."
+     assert_in_output shell_output, expected
   end
 
   def test_valid_drinking_information_gets_saved

@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../lib/environment'
+require_relative '../lib/logo'
 
 class BeerTest < Minitest::Unit::TestCase
 
