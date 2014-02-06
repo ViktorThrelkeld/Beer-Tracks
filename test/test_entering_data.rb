@@ -60,14 +60,13 @@ class TestEnteringData < BeerTest
     expected = ["Yazoo Pale", 40, 10]
     assert_equal expected, results[0]
 
-    result = database.execute("select count(id) from entries")
-    assert_equal 1, result[0][0]
+
+    assert_equal 1, Entries.count
   end
 
   def test_invalid_drinking_information_doesnt_get_saved
     execute_popen("./beertracks add Guiness")
-    result = database.execute("select count(id) from entries")
-    assert_equal 0, result[0][0]
+    assert_equal 0, Entries.count
   end
 
   def test_error_message_for_missing_cost

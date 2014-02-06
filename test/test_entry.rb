@@ -2,6 +2,17 @@ require_relative 'helper'
 
 
 class TestEntry < BeerTest
+  def test_count_when_no_entries
+    assert_equal 0, Entries.count
+  end
+
+  def test_count_of_multiple_entries
+    Entries.create(name: "foo", ounces: 40, cost: 1.50)
+    Entries.create(name: "Guinness", ounces: 20, cost: 2.50)
+    Entries.create(name: "Heineken", ounces: 72, cost: 8.50)
+    assert_equal 3, Entries.count
+  end
+
   def test_style_defaults_to_unknown
     entries = Entries.create(name: "Foo", ounces: "20", cost: "10")
     assert_equal "Unknown", entries.style.name
@@ -16,9 +27,9 @@ class TestEntry < BeerTest
 
  def test_update_doesnt_insert_new_row
     entries = Entries.create(name: "Foo", ounces: "12", cost: "5.50")
-    foos_before = database.execute("select count(id) from entries")[0][0]
+    foos_before = Entries.count
     entries.update(name: "Bar")
-    foos_after = database.execute("select count(id) from entries")[0][0]
+    foos_after = Entries.count
     assert_equal foos_before, foos_after
   end
 
@@ -43,9 +54,9 @@ class TestEntry < BeerTest
 
   def test_saved_entries_are_saved
     entries = Entries.new(name: "Foo", ounces: "12", cost: "5.50")
-    foos_before = database.execute("select count(id) from entries")[0][0]
+    foos_before = Entries.count
     entries.save
-    foos_after = database.execute("select count(id) from entries")[0][0]
+    foos_after = Entries.count
     assert_equal foos_before +1, foos_after
   end
 

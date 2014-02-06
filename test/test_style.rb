@@ -2,18 +2,29 @@ require_relative 'helper'
 
 
 class TestStyle < BeerTest
+   def test_count_when_no_style
+    assert_equal 0, Style.count
+  end
+
+  def test_count_of_multiple_styles
+    Style.find_or_create(name: "foo")
+    Style.find_or_create(name: "Stout")
+    Style.find_or_create(name: "Pilsner")
+    assert_equal 3, Style.count
+  end
+
   def test_style_are_created_if_needed
-    foos_before = database.execute("select count(id) from style")[0][0]
+    foos_before = Style.count
     Style.find_or_create(name: "Foo")
-    foos_after = database.execute("select count(id) from style")[0][0]
+    foos_after = Style.count
     assert_equal foos_before + 1, foos_after
   end
 
   def test_styles_are_not_created_if_they_already_exist
     Style.find_or_create(name: "Foo")
-    foos_before = database.execute("select count(id) from style")[0][0]
+    foos_before = Style.count
     Style.find_or_create(name: "Foo")
-    foos_after = database.execute("select count(id) from style")[0][0]
+    foos_after = Style.count
     assert_equal foos_before, foos_after
   end
 

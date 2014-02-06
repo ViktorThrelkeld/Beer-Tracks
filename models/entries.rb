@@ -15,6 +15,11 @@ class Entries
     @ounces = ounces.to_i
   end
 
+  def self.count
+    database = Environment.database_connection
+    database.execute("select count(id) from entries") [0][0]
+  end
+
   def self.create(attributes = {})
     entries = Entries.new(attributes)
     entries.save
