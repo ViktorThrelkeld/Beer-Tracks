@@ -14,10 +14,10 @@ class TestImportingEntries < BeerTest
   def test_entries_are_imported_fully
     import_data
     expected = [
-    "Anchor Steam, 12, 4.50, Porter",
-    "Bush, 25, 2.70, Pilsner",
-    "Guinness, 20, 10.00, Stout",
-    "Yazoo Pale Ale, 16, 5.50, IPA"
+    "Anchor Steam, 12, 4.5, Porter",
+    "Bush, 25, 2.7, Pilsner",
+    "Guinness, 20, 10.0, Stout",
+    "Yazoo Pale Ale, 16, 5.5, IPA"
     ]
     actual = Entries.all.map do |beer|
       "#{beer.name}, #{beer.ounces}, #{beer.cost}, #{beer.style.name}"
@@ -33,8 +33,8 @@ class TestImportingEntries < BeerTest
 
   def test_categories_are_created_as_needed
 
-    Style.find_or_create(name: "Stout")
-    Style.find_or_create(name: "Pets")
+    Style.find_or_create_by(name: "Stout")
+    Style.find_or_create_by(name: "Pets")
     import_data
     assert_equal 5, Style.all.count, "The categories were: #{Style.all.map(&:name)}"
   end

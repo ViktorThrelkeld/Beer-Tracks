@@ -12,9 +12,11 @@ class Importer
   end
 
 def self.import_entries(row_hash)
-  style = Style.find_or_create(name: row_hash["style"])
+  # style = Style.find_or_create(name: row_hash["style"])
+  style = Style.find_or_create_by(name: row_hash["style"].strip)
+
   entries = Entries.create(
-    name: row_hash["beer_name"],
+    name: row_hash["beer_name"].strip,
     ounces: row_hash["ounces"].to_i,
     cost: row_hash["cost"].to_f,
     style: style

@@ -14,9 +14,9 @@ class Environment
     @@environment = environment
   end
 
-  def self.database_connection
-    Database.connection(@@environment)
-  end
+  # def self.database_connection
+  #   Database.connection(@@environment)
+  # end
 
   def self.connect_to_database
     connection_details = YAML::load(File.open('config/database.yml'))

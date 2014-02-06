@@ -10,36 +10,47 @@ class BeerTracks
   attr_reader :options
 
   def initialize
-
     @options = ArgumentParser.parse
     Environment.environment = @options[:environment] || "production"
+    @options.delete(:environment)
   end
 
   def main
-    database = Environment.database_connection
+    # database = Environment.database_connection
+    Environment.connect_to_database
 
-    if options[:command] == "search"
+    # if options[:command] == "search"
+    command = options.delete(:command)
+    if command == "search"
       search_term = ask("What beer (by name) do you want to search for?")
       search_entries_for(search_term)
-    elsif options[:command] == "add"
+    # elsif options[:command] == "add"
+    elsif command == "add"
       add_entry()
-    elsif options[:command] == "list"
+    # elsif options[:command] == "list"
+    elsif command == "list"
       list_entries()
-    elsif options[:command] == "edit"
-      if entries = Entries.find(options[:id])
+    # elsif options[:command] == "edit"
+      # if entries = Entries.find(options[:id])
+    elsif command == "edit"
+      if entries = Entries.find_by(id: options[:id])
         entries.update(options)
-        puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost."
+        # puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost."
+        puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and #{entries.formatted_cost} cost."
+
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
-    elsif options[:command]== "delete"
-      if entries = Entries.find(options[:id])
+    # elsif options[:command]== "delete"
+    elsif command == "delete"
+      if entries = Entries.find_by(id: options[:id])
         entries.delete(options)
-        puts "Entry #{entries.id} which was #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost has been deleted."
+        puts "Entry #{entries.id} which was #{entries.name}, with #{entries.ounces} ounces and #{entries.formatted_cost} cost has been deleted."
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
-    elsif options[:command] == "total"
+    # elsif options[:command] == "total"
+    elsif command == "total"
       total_cost = add_prices()
       total_cost = sprintf('%.2f', total_cost)
       total_calories = add_calories
@@ -54,9 +65,11 @@ class BeerTracks
           puts "You are a fatass drunk."
         end
       end
-    elsif options[:command] == "average"
+    # elsif options[:command] == "average"
+    elsif command == "average"
       average()
-    elsif options[:command] == "menu"
+    # elsif options[:command] == "menu"
+    elsif command == "menu"
       logo
       puts "Welcome to the BeerTracks menu.\nHere are some commands:\n\nAdd: Add beer entries to your journal.\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\nYou will then be prompted for the style of beer.\n\nSearch: Search for a specific beer\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList: List your journal entries.\n./beertracks list\n\nEdit: Edit an entry.\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\n./beertracks edit --id(put id here)\nFollow this by what you want to edit (ex. --ounces 40).\n\nTotal: This prints out the total money spent and calories based on the style of beer consumed.\n./beertracks total\n\nAverage: This prints out the average cost, calories, and abv per 12.oz beer.\n./beertracks average\n\nMmmmm...Beer!"
     else
@@ -132,7 +145,7 @@ class BeerTracks
         entry = Entries.new(options)
         entry.save
         this_entry_calories = entry_calories()
-        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you $#{entry.cost}. You just put on approximately #{this_entry_calories} calories."
+        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you #{entries.formatted_cost}. You just put on approximately #{this_entry_calories} calories."
         logo
       else
         puts error_messages.join(" ")

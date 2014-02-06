@@ -3,9 +3,9 @@ require_relative 'helper'
 
 class TestEnteringData < BeerTest
   def test_user_is_presented_with_style_list
-    style1 = Style.find_or_create(name: "Foo")
-    style2 = Style.find_or_create(name: "Bar")
-    style3 = Style.find_or_create(name: "IPA")
+    style1 = Style.find_or_create_by(name: "Foo")
+    style2 = Style.find_or_create_by(name: "Bar")
+    style3 = Style.find_or_create_by(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
@@ -19,9 +19,9 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_chooses_category
-    style1 = Style.find_or_create(name: "Foo")
-    style2 = Style.find_or_create(name: "Bar")
-    style3 = Style.find_or_create(name: "IPA", calories_per_ounce: 17.5)
+    style1 = Style.find_or_create_by(name: "Foo")
+    style2 = Style.find_or_create_by(name: "Bar")
+    style3 = Style.find_or_create_by(name: "IPA", calories_per_ounce: 17.5)
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
@@ -32,7 +32,7 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_skips_entering_style
-    style3 = Style.find_or_create(name: "IPA")
+    style3 = Style.find_or_create_by(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts ""
@@ -60,7 +60,7 @@ class TestEnteringData < BeerTest
     # expected = ["Yazoo Pale", 40, 10]
     # assert_equal expected, results[0]
     entries = Entries.all.first
-    expected = ["Yazoo Pale", 40, "10.00"]
+    expected = ["Yazoo Pale", 40, 10.00]
     actual = [entries.name, entries.ounces, entries.cost]
     assert_equal expected, actual
     assert_equal 1, Entries.count

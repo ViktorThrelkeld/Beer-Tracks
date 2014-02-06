@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140205021500) do
     t.integer "style_id"
   end
 
-  create_table "style", force: true do |t|
+  create_table "styles", force: true do |t|
     t.string  "name"
     t.decimal "abv"
     t.decimal "calories_per_ounce"
