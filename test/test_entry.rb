@@ -68,7 +68,8 @@ class TestEntry < BeerTest
   def test_save_saves_style_id
     style = Style.find_or_create(name: "Barley Wine")
     entries = Entries.create(name: "Foo", ounces: 6, cost: 5.00, style: style)
-    style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    # style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    style_id = Entries.find(entries.id).style.id
     assert_equal style.id, style_id, "Style.id and entries.style_id should be the same"
   end
 
@@ -78,7 +79,8 @@ class TestEntry < BeerTest
     entries = Entries.create(name: "Foo", ounces: 20, cost: 5.50, style: style1)
     entries.style = style2
     entries.save
-    style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    # style_id = database.execute("select style_id from entries where id='#{entries.id}'")[0][0]
+    style_id = Entries.find(entries.id).style.id
     assert_equal style2.id, style_id, "Style2.id and entries.style_id should be the same"
   end
 
@@ -87,11 +89,23 @@ class TestEntry < BeerTest
   end
 
   def test_find_returns_the_row_as_purchase_object
-    entries = Entries.create(name: "Foo", ounces: 6, cost:6.00)
+    # entries = Entries.create(name: "Foo", ounces: 6, cost:6.00)
+    style = Style.find_or_create(name: "Things")
+    entries = Entries.create(name: "Foo", ounces: "20", cost: "2.50", style: style)
     found = Entries.find(entries.id)
     assert_equal entries.name, found.name
     assert_equal entries.id, found.id
+    assert_equal entries.ounces, found.ounces
+    assert_equal entries.cost, found.cost
   end
+  def test_find_returns_the_entries_with_correct_style
+    style = Style.find_or_create(name: "Things")
+    entries = Entries.create(name: "Foo", ounces: "20", cost: "2.50", style: style)
+    found = Entries.find(entries.id)
+    refute_equal Style.default.id, found.style.id
+    assert_equal style.id, found.style.id
+  end
+
 
   def test_search_returns_entries_objects
     Entries.create(name: "Foo", ounces: "12", cost: "5.50")

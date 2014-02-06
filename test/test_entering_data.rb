@@ -55,12 +55,14 @@ class TestEnteringData < BeerTest
 
   def test_valid_drinking_information_gets_saved
     execute_popen("./beertracks add 'Yazoo Pale' --ounces 40 --cost 10 --environment test")
-    database.results_as_hash = false
-    results = database.execute("select name, ounces, cost from entries")
-    expected = ["Yazoo Pale", 40, 10]
-    assert_equal expected, results[0]
-
-
+    # database.results_as_hash = false
+    # results = database.execute("select name, ounces, cost from entries")
+    # expected = ["Yazoo Pale", 40, 10]
+    # assert_equal expected, results[0]
+    entries = Entries.all.first
+    expected = ["Yazoo Pale", 40, "10.00"]
+    actual = [entries.name, entries.ounces, entries.cost]
+    assert_equal expected, actual
     assert_equal 1, Entries.count
   end
 

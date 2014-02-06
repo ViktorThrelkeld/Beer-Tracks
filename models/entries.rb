@@ -52,7 +52,8 @@ class Entries
     database.results_as_hash = true
     results = database.execute("select * from entries where id = #{id}")[0]
     if results
-      entries = Entries.new(name: results["name"], ounces: results["ounces"], cost: results["cost"])
+      style = Style.all.find{|style| style.id ==results["style_id"]}
+      entries = Entries.new(name: results["name"], ounces: results["ounces"], cost: results["cost"], style: style)
       entries.send("id=", results["id"])
       entries
     else
