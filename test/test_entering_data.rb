@@ -25,6 +25,7 @@ class TestEnteringData < BeerTest
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts "3"
+      pipe.close_write
       shell_output = pipe.read
     end
     expected = "Congratulations! You drank 12 oz of Accumulation (IPA), costing you $4.50. You just put on approximately 204 calories."
@@ -32,10 +33,11 @@ class TestEnteringData < BeerTest
   end
 
   def test_user_skips_entering_style
-    style3 = Style.find_or_create_by(name: "IPA")
+    style = Style.find_or_create_by(name: "IPA")
     shell_output = ""
     IO.popen('./beertracks add Accumulation --ounces 12 --cost 4.50 --environment test', 'r+') do |pipe|
       pipe.puts ""
+      pipe.close_write
       shell_output = pipe.read
     end
     expected = "Congratulations! You drank 12 oz of Accumulation (Unknown), costing you $4.50. You just put on approximately 144 calories."
@@ -59,16 +61,16 @@ class TestEnteringData < BeerTest
     # results = database.execute("select name, ounces, cost from entries")
     # expected = ["Yazoo Pale", 40, 10]
     # assert_equal expected, results[0]
-    entries = Entries.all.first
+    entries = Entry.all.first
     expected = ["Yazoo Pale", 40, 10.00]
     actual = [entries.name, entries.ounces, entries.cost]
     assert_equal expected, actual
-    assert_equal 1, Entries.count
+    assert_equal 1, Entry.count
   end
 
   def test_invalid_drinking_information_doesnt_get_saved
     execute_popen("./beertracks add Guiness")
-    assert_equal 0, Entries.count
+    assert_equal 0, Entry.count
   end
 
   def test_error_message_for_missing_cost

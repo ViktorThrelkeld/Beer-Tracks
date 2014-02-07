@@ -1,8 +1,8 @@
 require_relative 'helper'
 
-class TestEditingEntries < BeerTest
+class TestEditingEntry < BeerTest
   def test_updating_a_record_that_exists
-    entries = Entries.new(name: "Guinness", ounces: 12, cost: 5.50)
+    entries = Entry.new(name: "Guinness", ounces: 12, cost: 5.50)
     entries.save
     id = entries.id
     command = "./beertracks edit --id #{id} --name Guinness! --ounces 20 --cost 10.50"
@@ -18,7 +18,7 @@ class TestEditingEntries < BeerTest
   end
 
   def test_attempting_to_update_with_no_changes
-    entries = Entries.new(name: "Guinness", ounces: 12, cost: 5.50)
+    entries = Entry.new(name: "Guinness", ounces: 12, cost: 5.50)
     entries.save
     id = entries.id
     command = "./beertracks edit --id #{id} --name Guinness --ounces 12 --cost 5.50"
@@ -28,7 +28,7 @@ class TestEditingEntries < BeerTest
 
   def test_attempting_to_update_with_bad_data
     skip
-    entries = Entries.new(name: "Guinness", ounces: 12, cost: 5.50)
+    entries = Entry.new(name: "Guinness", ounces: 12, cost: 5.50)
     entries.save
     id = entries.id #<--- First thing we have to implement
     command = "./beertracks edit --id #{id} --name Guinness --ounces 12 --cost fifty"
@@ -38,7 +38,7 @@ class TestEditingEntries < BeerTest
 
   def test_attempting_to_update_partial_data
     skip
-    entries = Entries.new(name: "Guinness", ounces: 12, cost: 5.50)
+    entries = Entry.new(name: "Guinness", ounces: 12, cost: 5.50)
     entries.save
     id = entries.id #<--- First thing we have to implement
     command = "./beertracks edit --id #{id} --name Guinness!"

@@ -1,6 +1,5 @@
 require_relative 'helper'
 
-
 class TestStyle < BeerTest
   def test_default_creates_correctly_named_file
     style = Style.default
@@ -15,7 +14,7 @@ class TestStyle < BeerTest
   end
 
   def test_default_doesnt_create_duplicate_default
-    style = Style.find_or_create_by(name: "Unknown")
+    style = Style.find_or_create_by(name: "Unknown", calories_per_ounce: 12)
     assert_equal style.id, Style.default.id
     assert_equal 1, Style.count
   end

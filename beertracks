@@ -4,6 +4,7 @@ require_relative 'lib/environment'
 require_relative 'lib/argument_parser'
 require_relative 'lib/interactions'
 require_relative 'lib/logo'
+require 'pry'
 
 class BeerTracks
   include Interactions
@@ -16,40 +17,24 @@ class BeerTracks
   end
 
   def main
-    # database = Environment.database_connection
     Environment.connect_to_database
-
-    # if options[:command] == "search"
     command = options.delete(:command)
     if command == "search"
       search_term = ask("What beer (by name) do you want to search for?")
       search_entries_for(search_term)
-    # elsif options[:command] == "add"
     elsif command == "add"
       add_entry()
-    # elsif options[:command] == "list"
     elsif command == "list"
       list_entries()
-    # elsif options[:command] == "edit"
-      # if entries = Entries.find(options[:id])
     elsif command == "edit"
-      if entries = Entries.find_by(id: options[:id])
-        entries.update(options)
-        # puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and $#{entries.cost} cost."
-        puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and #{entries.formatted_cost} cost."
-
-      else
-        puts "Entry #{options[:id]} couldn't be found."
-      end
-    # elsif options[:command]== "delete"
+      edit_entries()
     elsif command == "delete"
-      if entries = Entries.find_by(id: options[:id])
-        entries.delete(options)
-        puts "Entry #{entries.id} which was #{entries.name}, with #{entries.ounces} ounces and #{entries.formatted_cost} cost has been deleted."
+      if entry = Entry.find(options[:id])
+        puts "Entry #{entry.id} which was #{entry.name}, with #{entry.ounces} ounces and #{entry.formatted_cost} cost has been deleted."
+        entry.destroy
       else
         puts "Entry #{options[:id]} couldn't be found."
       end
-    # elsif options[:command] == "total"
     elsif command == "total"
       total_cost = add_prices()
       total_cost = sprintf('%.2f', total_cost)
@@ -65,10 +50,8 @@ class BeerTracks
           puts "You are a fatass drunk."
         end
       end
-    # elsif options[:command] == "average"
     elsif command == "average"
       average()
-    # elsif options[:command] == "menu"
     elsif command == "menu"
       logo
       puts "Welcome to the BeerTracks menu.\nHere are some commands:\n\nAdd: Add beer entries to your journal.\n./beertracks add (Name of beer here) --ounces(how many ounces here) --cost(how much you paid here)\nYou will then be prompted for the style of beer.\n\nSearch: Search for a specific beer\n./beertracks search\nYou will then be prompted for the name of the beer.\n\nList: List your journal entries.\n./beertracks list\n\nEdit: Edit an entry.\nFirst, list your entries using list, so that you may find the entry you want to edit by its id.\n./beertracks edit --id(put id here)\nFollow this by what you want to edit (ex. --ounces 40).\n\nTotal: This prints out the total money spent and calories based on the style of beer consumed.\n./beertracks total\n\nAverage: This prints out the average cost, calories, and abv per 12.oz beer.\n./beertracks average\n\nMmmmm...Beer!"
@@ -77,8 +60,17 @@ class BeerTracks
     end
   end
 
+  def edit_entries()
+    if entries = Entry.find_by(id: options[:id])
+      entries.update(options)
+      puts "Entry #{entries.id} is now named #{entries.name}, with #{entries.ounces} ounces and #{entries.formatted_cost} cost."
+    else
+      puts "Entry #{options[:id]} couldn't be found."
+    end
+  end
+
   def average()
-    entries = Entries.all
+    entries = Entry.all
     total_abv = 0
     total_cost = 0
     total_ounces = 0
@@ -97,13 +89,13 @@ class BeerTracks
     average_abv = total_abv / total_ounces
     average_abv = sprintf('%.1f', average_abv)
 
-    average_calories_per_twelve_ounce_beer = total_calories / num_of_twelve_ounce_beers
+    average_calories_per_twelve_ounce_beer = total_calories /num_of_twelve_ounce_beers
 
     puts "Your average beer costs you $#{average_cost_per_twelve_ounce_beer}, adds #{average_calories_per_twelve_ounce_beer} calories to your diet, and has an abv of #{average_abv}%."
   end
 
   def add_prices()
-    entries = Entries.all
+    entries = Entry.all
     total = 0
     entries.each do |entry|
       total += entry.cost.to_f
@@ -112,7 +104,7 @@ class BeerTracks
   end
 
   def add_calories()
-    entries = Entries.all
+    entries = Entry.all
     total = 0
     entries.each do |entry|
       total += (entry.ounces.to_i * entry.style.calories_per_ounce.to_i)
@@ -121,39 +113,37 @@ class BeerTracks
   end
 
   def list_entries()
-    puts "All Entries:"
-    puts Entries.all
+    puts "All Entry:"
+    puts Entry.all
   end
 
   def search_entries_for(search_term)
     puts "You asked for: #{search_term}"
-    puts Entries.search(search_term)
+    puts Entry.search(search_term)
 
-    # entries = Entries.search(search_term)
+    # entries = Entry.search(search_term)
     # total = 0
     # entries.each do |entry|
     #   total += (ounces.to_i * entry.style.calories_per_ounce.to_i)
     # end
     # puts "#{total} calories"
-
   end
 
-  def add_entry
+  def add_entry()
     error_messages = ArgumentParser.validate(options)
     options[:style] = get_style()
       if error_messages.empty?
-        entry = Entries.new(options)
+        entry = Entry.new(options)
         entry.save
-        this_entry_calories = entry_calories()
-        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you #{entries.formatted_cost}. You just put on approximately #{this_entry_calories} calories."
+        this_entry_calories = entry_calories(entry)
+        puts "Congratulations! You drank #{entry.ounces} oz of #{entry.name} (#{entry.style.name}), costing you #{entry.formatted_cost}. You just put on approximately #{this_entry_calories} calories."
         logo
       else
         puts error_messages.join(" ")
       end
     end
 
-    def entry_calories
-      entry = Entries.new(options)
+    def entry_calories entry
       total =entry.ounces.to_i * entry.style.calories_per_ounce.to_i
       total
     end

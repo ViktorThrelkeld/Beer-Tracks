@@ -8,7 +8,7 @@ class TestImportingEntries < BeerTest
 
   def test_the_correct_number_of_entries_are_imported
     import_data
-    assert_equal 4, Entries.all.count
+    assert_equal 4, Entry.all.count
   end
 
   def test_entries_are_imported_fully
@@ -19,7 +19,7 @@ class TestImportingEntries < BeerTest
     "Guinness, 20, 10.0, Stout",
     "Yazoo Pale Ale, 16, 5.5, IPA"
     ]
-    actual = Entries.all.map do |beer|
+    actual = Entry.all.map do |beer|
       "#{beer.name}, #{beer.ounces}, #{beer.cost}, #{beer.style.name}"
     end
     assert_equal expected, actual

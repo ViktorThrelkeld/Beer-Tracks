@@ -6,18 +6,12 @@ class BeerTest < Minitest::Unit::TestCase
 
   def setup
     Environment.environment = "test"
-  # end
-
-  # def database
-  #   Environment.database_connection
     Environment.connect_to_database
   end
 
   def teardown
-    # database.execute("delete from entries")
-    # database.execute("delete from style")
     Style.destroy_all
-    Entries.destroy_all
+    Entry.destroy_all
   end
 
   def execute_popen command
