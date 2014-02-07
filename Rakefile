@@ -18,6 +18,7 @@ task :default => :test
 desc 'import data from the given file'
 task :import_data do
   Environment.environment = "production"
+  Environment.connect_to_database
   Importer.import("data/style_import.csv")
   Importer.import("data/entries_import.csv")
 end
